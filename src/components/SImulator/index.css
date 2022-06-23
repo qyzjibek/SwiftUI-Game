@@ -1,0 +1,10 @@
+.game-simulator {
+    position: fixed;
+    width: calc(100% - 650px);
+    height: 100vh;
+    left: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+  }
