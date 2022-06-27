@@ -4,7 +4,8 @@
     padding: 1rem;
     max-width: 550px;
     scroll-behavior: auto !important;
-    height: 100vh
+    height: 100vh;
+    margin-bottom: 140px;
 }
 
 .heading {
@@ -23,7 +24,7 @@ p {
 }
 
 pre {
-    color: aqua;
+    color: #ff00bc;
     background-color: rgb(51, 46, 46);
     border-radius: 5px;
 }

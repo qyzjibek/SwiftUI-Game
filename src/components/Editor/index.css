@@ -1,5 +1,4 @@
 .editor-wrapper {
-    width: 520px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -7,7 +6,7 @@
     padding: 10px 10px 30px 30px;
     background: rgb(51, 46, 46);
     border-top: 1px solid hsla(347,6%,72%,.2);
-    z-index: 999;{}
+    z-index: 999;
 }
 
 .editor-content {

@@ -1,6 +1,9 @@
 import "./index.css"
+import { useContext, useState } from "react";
+import { EditorContext } from "../../Context";
 
-export const Editor = () => {
+export const Editor = ({text}) => {
+    const {handleContentChange} = useContext(EditorContext);
     return (
         <div className="editor-wrapper">
             <div className="editor-content">
@@ -13,7 +16,7 @@ export const Editor = () => {
             Text("Hello SwiftUI")
 `}
                 </pre>
-                <textarea autocapitalize="none" spellcheck="false" placeholder="Type your answer here..."></textarea>
+                <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange}></textarea>
                 <pre>
 {`
         }
