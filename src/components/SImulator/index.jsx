@@ -171,9 +171,11 @@ export const GameSimulator = () => {
         const content = editorContent.trim();
         if(content.startsWith('.') && content.endsWith(')')) {
             const parantheseIndex = content.indexOf('(');
+            const argument = content.slice(parantheseIndex);
             const functionCall = content.slice(1, parantheseIndex);
             if (functionCall == "background" || functionCall == "backgroundColor") {
-                const color = content.slice(parantheseIndex+2, -1);
+                const argumentIndex = argument.indexOf('.');
+                const color = argument.slice(1, argumentIndex) == "Color" ||  argument.slice(1, argumentIndex+1).startsWith('.') ? argument.slice(argumentIndex+1, -1) : "transparent";
                 setMatchedColor(CSS_COLOR_NAMES.includes(capitalizeFirstLetter(color)) ? color : "");
             } else {
                 setMatchedColor("");
@@ -185,7 +187,11 @@ export const GameSimulator = () => {
 
     return (
         <div className="game-simulator">
-            <div id='text' className='text' style={{backgroundColor: matchedColor}}>Hello World</div>
+            <div id='text' className='text' style={{backgroundColor: matchedColor}}>Hello SwiftUI</div>
+            <img 
+      src="https://web-mobile-first.s3.eu-west-3.amazonaws.com/production/small_apple_iphone_13_pro_max_2021_1b54b42564.png"
+      alt="new"
+      />
         </div>
     );
 };

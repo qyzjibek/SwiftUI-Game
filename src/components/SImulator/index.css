@@ -10,3 +10,8 @@
     /* border-radius: 15px; */
     justify-content: center;
   }
+
+  img {
+    z-index: -5;
+    position: absolute;
+  }
