@@ -17,6 +17,7 @@ export const NavBar = () => {
               <Nav.Link href="#link">Helpful Links</Nav.Link>
             </Nav>
           </Navbar.Collapse>
+
         </Container>
       </Navbar>
   );

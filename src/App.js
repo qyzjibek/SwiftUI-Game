@@ -8,6 +8,7 @@ import { GameDescription } from './components/Description';
 import { Editor } from './components/Editor';
 
 function App() {
+
   const [editorContent, setEditorContent] = useState("");
 
   const handleContentChange = (event) => {

@@ -1,6 +1,8 @@
 import "./index.css"
 import { useContext, useState } from "react";
 import { EditorContext } from "../../Context";
+import BasicModal from "../Modal/Modal";
+import CustomizedDialogs from "../PopUp";
 
 export const Editor = ({text}) => {
     const {handleContentChange} = useContext(EditorContext);
@@ -21,11 +23,11 @@ export const Editor = ({text}) => {
 {`
         }
     }
-
 `}
                 </pre>
                 <div>
-                <button className="check-btn">Check Answer</button>
+                <BasicModal />
+                <CustomizedDialogs />
                 </div>
             </div>
         </div>
