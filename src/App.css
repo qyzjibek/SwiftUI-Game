@@ -1,10 +1,9 @@
 .root {
   width: 100vw;
   height: 100vh;
-  border: 5px solid red;
   display: flex;
 }
 
 body {
-  background-color: #9F6B99FF;
+  background-color: white;
 }

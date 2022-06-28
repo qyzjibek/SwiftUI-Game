@@ -1,3 +1,5 @@
+import "./index.css"
+
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
@@ -23,7 +25,7 @@ const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
 
   return (
-    <DialogTitle sx={{ m: 0, p: 2, width: "50px" }} {...other}>
+    <DialogTitle sx={{ m: 0, p: 2, width: "100px" }} {...other}>
       {children}
       {onClose ? (
         <IconButton
@@ -60,9 +62,9 @@ export default function CustomizedDialogs() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open dialog
-      </Button>
+      <button onClick={handleClickOpen} className='check-btn'>
+        Check answer
+      </button>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -71,21 +73,11 @@ export default function CustomizedDialogs() {
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
           Modal title
         </BootstrapDialogTitle>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-            ullamcorper nulla non metus auctor fringilla.
-          </Typography>
+        <DialogContent>
+        <img 
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjofEiOVY3vCFVUY_XTfQTp9i8HP_fScdsXfo-8k55ZW8wDxgHPwVE1bTAbgYgPZEH9Gg&usqp=CAU"
+      alt="SwiftUI Logo"
+      />
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>

@@ -1,7 +1,6 @@
 import "./index.css"
 import { useContext, useState } from "react";
 import { EditorContext } from "../../Context";
-import BasicModal from "../Modal/Modal";
 import CustomizedDialogs from "../PopUp";
 
 export const Editor = ({text}) => {
@@ -26,7 +25,6 @@ export const Editor = ({text}) => {
 `}
                 </pre>
                 <div>
-                <BasicModal />
                 <CustomizedDialogs />
                 </div>
             </div>

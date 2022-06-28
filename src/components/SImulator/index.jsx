@@ -195,9 +195,3 @@ export const GameSimulator = () => {
         </div>
     );
 };
-
-// const color = functionCall.slice(18, -1);
-//             setMatchedColor(CSS_COLOR_NAMES.includes(capitalizeFirstLetter(color)) ? color : "");
-//         } else {
-//             setMatchedColor("");
-//         }

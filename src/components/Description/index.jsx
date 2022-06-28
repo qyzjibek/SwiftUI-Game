@@ -26,7 +26,6 @@ One option is to use the background() modifier, which can be given a color to dr
 
 `}
                 </pre>
-
             </div>
         </div>
     );
