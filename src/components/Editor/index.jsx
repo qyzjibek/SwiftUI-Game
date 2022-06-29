@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { EditorContext } from "../../Context";
 import CustomizedDialogs from "../PopUp";
 
-export const Editor = ({text}) => {
+export const Editor = ({text, matchedColor}) => {
     const {handleContentChange} = useContext(EditorContext);
     return (
         <div className="editor-wrapper">
@@ -25,7 +25,7 @@ export const Editor = ({text}) => {
 `}
                 </pre>
                 <div>
-                <CustomizedDialogs />
+                <CustomizedDialogs matchedColor={matchedColor}/>
                 </div>
             </div>
         </div>

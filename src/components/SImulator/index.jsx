@@ -3,10 +3,10 @@ import { EditorContext } from '../../Context';
 import { useState, useEffect } from 'react';
 import './index.css'
 
-export const GameSimulator = () => {
+export const GameSimulator = (props) => {
     const {editorContent} = useContext(EditorContext);
 
-    const [matchedColor, setMatchedColor] = useState("");
+    const {matchedColor, setMatchedColor} = props;
 
     const CSS_COLOR_NAMES = [
         "AliceBlue",
@@ -168,6 +168,14 @@ export const GameSimulator = () => {
     }
 
     function checkFunctionCall() {
+        setMatchedColor(isColorValid());  
+    }
+
+    // function parseInput(){
+    //     return Styles;
+    // }
+
+    function isColorValid() {
         const content = editorContent.trim();
         if(content.startsWith('.') && content.endsWith(')')) {
             const parantheseIndex = content.indexOf('(');
@@ -176,15 +184,14 @@ export const GameSimulator = () => {
             if (functionCall == "background" || functionCall == "backgroundColor") {
                 const argumentIndex = argument.indexOf('.');
                 const color = argument.slice(1, argumentIndex) == "Color" ||  argument.slice(1, argumentIndex+1).startsWith('.') ? argument.slice(argumentIndex+1, -1) : "transparent";
-                setMatchedColor(CSS_COLOR_NAMES.includes(capitalizeFirstLetter(color)) ? color : "");
+                return CSS_COLOR_NAMES.includes(capitalizeFirstLetter(color)) ? color : "";
             } else {
-                setMatchedColor("");
+                return "";
             }
         } else {
-            setMatchedColor("");
-        }   
+            return "";
+        }  
     }
-
     return (
         <div className="game-simulator">
             <div id='text' className='text' style={{backgroundColor: matchedColor}}>Hello SwiftUI</div>

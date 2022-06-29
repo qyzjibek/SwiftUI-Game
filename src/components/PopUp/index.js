@@ -2,7 +2,6 @@ import "./index.css"
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -10,8 +9,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
-
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -50,13 +47,19 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function CustomizedDialogs() {
+export default function CustomizedDialogs({matchedColor}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
-    setOpen(true);
+      if(matchedColor != "") {
+        setOpen(true);
+      } else {
+          alert("Oops, wrong answer. Try again!");
+      }
   };
+
   const handleClose = () => {
+    console.log("close");
     setOpen(false);
   };
 
@@ -71,7 +74,7 @@ export default function CustomizedDialogs() {
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
+          Level 1 completed
         </BootstrapDialogTitle>
         <DialogContent>
         <img 
@@ -80,9 +83,9 @@ export default function CustomizedDialogs() {
       />
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Save changes
-          </Button>
+        <button onClick={handleClose} className='check-btn' style={{marginLeft: '200px'}}>
+            Next Level
+        </button>
         </DialogActions>
       </BootstrapDialog>
     </div>

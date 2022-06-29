@@ -1,5 +1,4 @@
 import './index.css'
-
 export const GameDescription = () => {
     return (
         <div className='description'>

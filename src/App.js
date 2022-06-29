@@ -8,6 +8,7 @@ import { GameDescription } from './components/Description';
 import { Editor } from './components/Editor';
 
 function App() {
+  const [matchedColor, setMatchedColor] = useState("");
 
   const [editorContent, setEditorContent] = useState("");
 
@@ -16,11 +17,11 @@ function App() {
   }
 
   return (
-    <EditorContext.Provider value={{ handleContentChange, editorContent }}>
+    <EditorContext.Provider value={{ handleContentChange, editorContent, matchedColor, setMatchedColor }}>
       <NavBar />
-      <GameSimulator />
+      <GameSimulator matchedColor={matchedColor} setMatchedColor={setMatchedColor}/>
       <GameDescription />
-      <Editor text={editorContent}/>
+      <Editor text={editorContent} matchedColor={matchedColor}/>
     </EditorContext.Provider>
   );
 }
