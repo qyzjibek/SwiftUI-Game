@@ -1,5 +1,5 @@
 import './index.css'
-export const GameDescription = () => {
+export const GameDescription1 = () => {
     return (
         <div className='description'>
             <div className='heading'>

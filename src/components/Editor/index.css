@@ -23,14 +23,13 @@
 
 textarea {
     height: 24px;
-    margin-left: 100px;
+    margin-left: 96px;
     resize: none;
     background: #f1f7ff;
     color: rgb(29, 29, 31);
     width: 80%;
-    padding: 10px;
+    padding: 2px;
     font-family: SF Mono,SFMono-Regular,ui-monospace,Menlo,monospace;
-    padding: 0;
     line-height: inherit;
     font-size: 13px;
 }

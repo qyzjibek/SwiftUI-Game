@@ -6,7 +6,9 @@ import './index.css'
 export const GameSimulator = (props) => {
     const {editorContent} = useContext(EditorContext);
 
-    const {matchedColor, setMatchedColor} = props;
+    const {matchedColor, setMatchedColor, matchedFont,setMatchedFont} = props;
+
+    const [customStyle, setCustomStyle] = useState({});
 
     const CSS_COLOR_NAMES = [
         "AliceBlue",
@@ -160,6 +162,7 @@ export const GameSimulator = (props) => {
       ];      
 
     useEffect(() => {
+        addFont();
         checkFunctionCall();
     }, [editorContent])
 
@@ -168,11 +171,14 @@ export const GameSimulator = (props) => {
     }
 
     function checkFunctionCall() {
-        setMatchedColor(isColorValid());  
+        setCustomStyle((prev) => ({
+            ...prev,
+            backgroundColor: isColorValid()
+        }))
     }
 
-    // function parseInput(){
-    //     return Styles;
+    // function addStyle() {
+
     // }
 
     function isColorValid() {
@@ -180,7 +186,7 @@ export const GameSimulator = (props) => {
         if(content.startsWith('.') && content.endsWith(')')) {
             const parantheseIndex = content.indexOf('(');
             const argument = content.slice(parantheseIndex);
-            const functionCall = content.slice(1, parantheseIndex);
+            const functionCall = content.slice(1, parantheseIndex).trim();
             if (functionCall == "background" || functionCall == "backgroundColor") {
                 const argumentIndex = argument.indexOf('.');
                 const color = argument.slice(1, argumentIndex) == "Color" ||  argument.slice(1, argumentIndex+1).startsWith('.') ? argument.slice(argumentIndex+1, -1) : "transparent";
@@ -192,9 +198,44 @@ export const GameSimulator = (props) => {
             return "";
         }  
     }
+
+    function addFont() {
+        const content = editorContent.trim();
+        var indicesOfDot = [];
+        for(var i = 0; i < content.length; i++) {
+            if (content[i] === '.') indicesOfDot.push(i);
+        }
+
+        for(var i = 0; i < indicesOfDot.length; i++) {
+            const index = indicesOfDot[i];
+            const functionCall = i == 1 ? content.slice(index+1).trim() : content.slice(index+1, indicesOfDot[i+1]).trim();
+            const begin =  functionCall.indexOf('(');
+            const end = functionCall.indexOf(')');
+            console.log(begin, end);
+            // console.log("here: ", functionCall);
+            
+            const token = functionCall.slice(0, -2).trim();
+            const last = functionCall.slice(-2);
+            
+            if (token == "italic" && last== "()") {
+                setCustomStyle((prev) => ({
+                    ...prev,
+                    fontStyle: 'italic'
+                }));
+            } else if (token== "bold" && last == "()") {
+                setCustomStyle((prev) => ({
+                    ...prev,
+                    fontWeight: 'bold'
+                }));
+            } else {
+                setCustomStyle({});
+            }
+        }
+    }
+
     return (
         <div className="game-simulator">
-            <div id='text' className='text' style={{backgroundColor: matchedColor}}>Hello SwiftUI</div>
+            <div id='text' className='text' style={customStyle}>Hello SwiftUI</div>
             <img 
       src="https://web-mobile-first.s3.eu-west-3.amazonaws.com/production/small_apple_iphone_13_pro_max_2021_1b54b42564.png"
       alt="new"

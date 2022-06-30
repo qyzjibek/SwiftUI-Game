@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { EditorContext } from "../../Context";
 import CustomizedDialogs from "../PopUp";
 
-export const Editor = ({text, matchedColor}) => {
+export const Editor2 = ({text, matchedColor}) => {
     const {handleContentChange} = useContext(EditorContext);
     return (
         <div className="editor-wrapper">
@@ -14,10 +14,10 @@ export const Editor = ({text, matchedColor}) => {
 
     struct ContentView: View {
         var body: some View {
-            Text("Hello SwiftUI")
+            Text("Make me bold, then italic")
 `}
                 </pre>
-                <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange}></textarea>
+                <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange} style={{height: '48px'}}></textarea>
                 <pre>
 {`
         }
