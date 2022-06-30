@@ -162,48 +162,23 @@ export const GameSimulator = (props) => {
       ];      
 
     useEffect(() => {
-        addFont();
-        checkFunctionCall();
+        addStyle();
     }, [editorContent])
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    function checkFunctionCall() {
-        setCustomStyle((prev) => ({
-            ...prev,
-            backgroundColor: isColorValid()
-        }))
+    function isColorValid(color) {
+        // TODO: Parse Color
+        return CSS_COLOR_NAMES.includes(capitalizeFirstLetter(color)) ? color : "";
     }
 
-    // function addStyle() {
-
-    // }
-
-    function isColorValid() {
-        const content = editorContent.trim();
-        if(content.startsWith('.') && content.endsWith(')')) {
-            const parantheseIndex = content.indexOf('(');
-            const argument = content.slice(parantheseIndex);
-            const functionCall = content.slice(1, parantheseIndex).trim();
-            if (functionCall == "background" || functionCall == "backgroundColor") {
-                const argumentIndex = argument.indexOf('.');
-                const color = argument.slice(1, argumentIndex) == "Color" ||  argument.slice(1, argumentIndex+1).startsWith('.') ? argument.slice(argumentIndex+1, -1) : "transparent";
-                return CSS_COLOR_NAMES.includes(capitalizeFirstLetter(color)) ? color : "";
-            } else {
-                return "";
-            }
-        } else {
-            return "";
-        }  
-    }
-
-    function addFont() {
+    function addStyle() {
         const content = editorContent.trim();
         var indicesOfDot = [];
         for(var i = 0; i < content.length; i++) {
-            if (content[i] === '.') indicesOfDot.push(i);
+            if (content[i] === '.' && content[i-1] !== '(') indicesOfDot.push(i);
         }
 
         for(var i = 0; i < indicesOfDot.length; i++) {
@@ -211,22 +186,32 @@ export const GameSimulator = (props) => {
             const functionCall = i == 1 ? content.slice(index+1).trim() : content.slice(index+1, indicesOfDot[i+1]).trim();
             const begin =  functionCall.indexOf('(');
             const end = functionCall.indexOf(')');
-            console.log(begin, end);
-            // console.log("here: ", functionCall);
-            
-            const token = functionCall.slice(0, -2).trim();
-            const last = functionCall.slice(-2);
-            
-            if (token == "italic" && last== "()") {
-                setCustomStyle((prev) => ({
-                    ...prev,
-                    fontStyle: 'italic'
-                }));
-            } else if (token== "bold" && last == "()") {
-                setCustomStyle((prev) => ({
-                    ...prev,
-                    fontWeight: 'bold'
-                }));
+
+            if (begin + 1 == end) {
+                const token = functionCall.slice(0, -2).trim();
+                if (token == "italic") {
+                    setCustomStyle((prev) => ({
+                        ...prev,
+                        fontStyle: 'italic'
+                    }));
+                } else if (token== "bold") {
+                    setCustomStyle((prev) => ({
+                        ...prev,
+                        fontWeight: 'bold'
+                    }));
+                } else {
+                    setCustomStyle({});
+                }
+            } else if (end > begin) {
+                const token = functionCall.slice(0, begin);
+                const param = functionCall.slice(begin+2, end);
+                console.log(functionCall.slice(begin, end));
+                if (token == "background" || token == "backgroundColor") {
+                    setCustomStyle((prev) => ({
+                        ...prev,
+                        backgroundColor: isColorValid(param.trim())
+                    }))
+                } 
             } else {
                 setCustomStyle({});
             }
