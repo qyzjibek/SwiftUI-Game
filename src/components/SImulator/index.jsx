@@ -4,11 +4,7 @@ import { useState, useEffect } from 'react';
 import './index.css'
 
 export const GameSimulator = (props) => {
-    const {editorContent} = useContext(EditorContext);
-
-    const {matchedColor, setMatchedColor, matchedFont,setMatchedFont} = props;
-
-    const [customStyle, setCustomStyle] = useState({});
+    const {editorContent, customStyle, setCustomStyle} = useContext(EditorContext);
 
     const CSS_COLOR_NAMES = [
         "AliceBlue",
@@ -205,8 +201,13 @@ export const GameSimulator = (props) => {
             } else if (end > begin) {
                 const token = functionCall.slice(0, begin);
                 const param = functionCall.slice(begin+2, end);
-                console.log(functionCall.slice(begin, end));
+
                 if (token == "background" || token == "backgroundColor") {
+                    // console.log(begin);
+                    // if (begin == -1){ 
+                    //     console.log('here');
+                    // }
+
                     setCustomStyle((prev) => ({
                         ...prev,
                         backgroundColor: isColorValid(param.trim())
@@ -220,7 +221,7 @@ export const GameSimulator = (props) => {
 
     return (
         <div className="game-simulator">
-            <div id='text' className='text' style={customStyle}>Hello SwiftUI</div>
+            <div id='text' className='text' style={customStyle}>Make me bold, then italic</div>
             <img 
       src="https://web-mobile-first.s3.eu-west-3.amazonaws.com/production/small_apple_iphone_13_pro_max_2021_1b54b42564.png"
       alt="new"

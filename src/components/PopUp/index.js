@@ -1,4 +1,6 @@
 import "./index.css"
+import { useContext } from "react";
+import { EditorContext } from "../../Context";
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -47,11 +49,14 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function CustomizedDialogs({matchedColor}) {
+export default function CustomizedDialogs({isValidAnswer}) {
+  const {customStyle, setLevel} = useContext(EditorContext);
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
-      if(matchedColor != "") {
+    // setOpen(true);
+      if(isValidAnswer(customStyle)) {
         setOpen(true);
       } else {
           alert("Oops, wrong answer. Try again!");
@@ -59,7 +64,7 @@ export default function CustomizedDialogs({matchedColor}) {
   };
 
   const handleClose = () => {
-    console.log("close");
+    setLevel((prev) => (prev < 2 ? prev+1 : prev));
     setOpen(false);
   };
 

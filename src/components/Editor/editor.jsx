@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { EditorContext } from "../../Context";
 import CustomizedDialogs from "../PopUp";
 
-export const Editor2 = ({text, matchedColor}) => {
+export const Editor = ({text, label, isValidAnswer}) => {
     const {handleContentChange} = useContext(EditorContext);
     return (
         <div className="editor-wrapper">
@@ -14,10 +14,10 @@ export const Editor2 = ({text, matchedColor}) => {
 
     struct ContentView: View {
         var body: some View {
-            Text("Make me bold, then italic")
+            ${label}
 `}
                 </pre>
-                <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange} style={{height: '48px'}}></textarea>
+                <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange}></textarea>
                 <pre>
 {`
         }
@@ -25,7 +25,7 @@ export const Editor2 = ({text, matchedColor}) => {
 `}
                 </pre>
                 <div>
-                <CustomizedDialogs matchedColor={matchedColor}/>
+                <CustomizedDialogs isValidAnswer={isValidAnswer}/>
                 </div>
             </div>
         </div>

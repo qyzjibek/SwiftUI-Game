@@ -180,7 +180,6 @@ const parseInput = (input) => {
 
         if (indicesOfDot.length == 1) {
             const functionCall = content.slice(indicesOfDot[0]).trim();
-            console.log(functionCall);
         }
     }
 }
