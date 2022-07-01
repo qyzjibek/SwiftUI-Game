@@ -49,8 +49,8 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function CustomizedDialogs({isValidAnswer}) {
-  const {customStyle, setLevel} = useContext(EditorContext);
+export default function CustomizedDialogs({isValidAnswer, level}) {
+  const {customStyle, handleLevelChange} = useContext(EditorContext);
 
   const [open, setOpen] = React.useState(false);
 
@@ -64,8 +64,8 @@ export default function CustomizedDialogs({isValidAnswer}) {
   };
 
   const handleClose = () => {
-    setLevel((prev) => (prev < 2 ? prev+1 : prev));
     setOpen(false);
+    handleLevelChange();
   };
 
   return (
@@ -78,17 +78,21 @@ export default function CustomizedDialogs({isValidAnswer}) {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Level 1 completed
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} style={{width: "100%", fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif"}}>
+          Level {level} completed
         </BootstrapDialogTitle>
-        <DialogContent>
+        <DialogContent className="dialog-content" style={{padding: "22px"}}>
         <img 
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjofEiOVY3vCFVUY_XTfQTp9i8HP_fScdsXfo-8k55ZW8wDxgHPwVE1bTAbgYgPZEH9Gg&usqp=CAU"
+        style={{width:"70px",height:"64px",position:"initial"}}
+      src="https://miro.medium.com/max/1400/1*ePoF2imvQpvI6dvDG_OnAw.png"
       alt="SwiftUI Logo"
-      />
+      /> 
+      <div className="score">
+      + 10
+      </div>
         </DialogContent>
         <DialogActions>
-        <button onClick={handleClose} className='check-btn' style={{marginLeft: '200px'}}>
+        <button onClick={handleClose} className='check-btn' style={{marginLeft: '160px'}}>
             Next Level
         </button>
         </DialogActions>

@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { EditorContext } from "../../Context";
 import CustomizedDialogs from "../PopUp";
 
-export const Editor = ({text, label, isValidAnswer}) => {
+export const Editor = ({text, label, isValidAnswer, level}) => {
     const {handleContentChange} = useContext(EditorContext);
     return (
         <div className="editor-wrapper">
@@ -17,7 +17,7 @@ export const Editor = ({text, label, isValidAnswer}) => {
             ${label}
 `}
                 </pre>
-                <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange}></textarea>
+                <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange} style={{height: `${level < 2 ? "24px" : "48px"}`}}></textarea>
                 <pre>
 {`
         }
@@ -25,7 +25,7 @@ export const Editor = ({text, label, isValidAnswer}) => {
 `}
                 </pre>
                 <div>
-                <CustomizedDialogs isValidAnswer={isValidAnswer}/>
+                <CustomizedDialogs isValidAnswer={isValidAnswer} level={level}/>
                 </div>
             </div>
         </div>

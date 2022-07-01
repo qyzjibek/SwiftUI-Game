@@ -3,13 +3,22 @@ import { useState, useEffect } from 'react';
 
 import { NavBar } from './components/NavBar';
 import { LevelMatcherStyle } from './components/LevelMatcher';
+import { useForkRef } from '@mui/material';
 
 function App() {
-  const [level, setLevel] = useState({});
+  const [level, setLevel] = useState(Number(localStorage.getItem('level')) || 1);
+  console.log(level)
+  // useEffect(() => {
+  //   const currLevel = localStorage.getItem('level');
+  //   if (currLevel) {
+  //     setLevel(currLevel);
+  //   }
+  // }, []);
 
   useEffect(() => {
-    setLevel(1);
-  }, [])
+    localStorage.setItem('level', level);
+  }, [level]);
+
   return (
     <>
       <NavBar /> 

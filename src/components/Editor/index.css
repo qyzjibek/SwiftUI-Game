@@ -7,6 +7,7 @@
     border-top: 1px solid #d2d2d7;
     background-color: white;
     z-index: 999;
+    bottom: 0;
 }
 
 .editor-content {
@@ -22,7 +23,6 @@
 }
 
 textarea {
-    height: 24px;
     margin-left: 96px;
     resize: none;
     background: #f1f7ff;

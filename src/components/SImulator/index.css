@@ -10,9 +10,11 @@
     justify-content: center;
 }
 
-img {
+#simulator-svg {
   z-index: -5;
   position: absolute;
+  width: 288px;
+  height: 580px;
 }
 
 text {

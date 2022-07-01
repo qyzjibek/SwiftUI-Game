@@ -12,3 +12,21 @@
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     letter-spacing: -.022em;
 }
+
+.dialog-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score {
+    font-weight: 500;
+    font-size: 20px;
+    margin-left: 10px;
+    color: #38a39c;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+button {
+    font-family: -apple-system, sans-serif;
+}
