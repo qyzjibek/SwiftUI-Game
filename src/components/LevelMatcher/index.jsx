@@ -18,15 +18,20 @@ export const LevelMatcherStyle = ({level, setLevel}) => {
     setEditorContent(event.target.value);
   }
 
-  const handleLevelChange = (val) => {
-    setLevel((prev) => (prev < 3 ? prev+val : prev));
+  const handleLevelIncr = () => {
+    setLevel((prev) => (prev < 3 ? prev+1 : prev));
     setCustomStyle({});
     setEditorContent("");
   }
 
-  console.log(levelsData, level)
+  const handleLevelDecr = () => {
+    setLevel((prev) => (prev > 1 ? prev-1 : prev));
+    setCustomStyle({});
+    setEditorContent("");
+  }
+
     return (
-      <EditorContext.Provider value={{ handleContentChange, editorContent, customStyle, setCustomStyle, handleLevelChange }}>
+      <EditorContext.Provider value={{ handleContentChange, editorContent, customStyle, setCustomStyle, handleLevelIncr, handleLevelDecr }}>
         <GameSimulator label={data.textLabel}/>
         <GameDescription level={level}/>
         <Editor level={level} text={editorContent} label={`Text("${data.textLabel}")`} isValidAnswer={data.isValidAnswer}/>

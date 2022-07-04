@@ -50,7 +50,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function CustomizedDialogs({isValidAnswer, level}) {
-  const {customStyle, handleLevelChange} = useContext(EditorContext);
+  const {customStyle, handleLevelIncr} = useContext(EditorContext);
 
   const [open, setOpen] = React.useState(false);
 
@@ -65,7 +65,7 @@ export default function CustomizedDialogs({isValidAnswer, level}) {
 
   const handleClose = () => {
     setOpen(false);
-    handleLevelChange();
+    handleLevelIncr();
   };
 
   return (

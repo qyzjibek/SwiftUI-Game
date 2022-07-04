@@ -2,7 +2,7 @@
     width: 100%;
     min-height: auto;
     padding: 1rem;
-    max-width: 550px;
+    max-width: 650px;
     scroll-behavior: auto !important;
     height: 100vh;
     margin-bottom: 140px;
@@ -25,4 +25,21 @@ p {
 pre {
     color: rgb(173, 61, 164);
     border-radius: 5px;
+    background-color: #fbfbfd;
+    font-size: 13px;
+}
+
+.desc-code {
+    margin: 28px 64px;
+}
+
+.control-btn {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.control-btn-image {
+    width: 24px;
+    height: 24px;
 }

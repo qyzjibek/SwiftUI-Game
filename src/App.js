@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 
 import { NavBar } from './components/NavBar';
 import { LevelMatcherStyle } from './components/LevelMatcher';
-import { useForkRef } from '@mui/material';
 
 function App() {
   const [level, setLevel] = useState(Number(localStorage.getItem('level')) || 1);

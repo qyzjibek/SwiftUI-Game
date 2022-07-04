@@ -46,17 +46,22 @@ export const useParser=()=>{
                 const token = functionCall.slice(0, begin);
                 const param = functionCall.slice(begin+2, end);
 
-                if (token == "background" || token == "backgroundColor") {
-                    // console.log(begin);
-                    // if (begin == -1){ 
-                    //     console.log('here');
-                    // }
-
-                    setCustomStyle((prev) => ({
-                        ...prev,
-                        backgroundColor: isColorValid(param.trim())
-                    }))
-                } 
+                switch (token) {
+                    case "background":
+                        setCustomStyle((prev) => ({
+                            ...prev,
+                            backgroundColor: isColorValid(param.trim())
+                        }));
+                        break;
+                    case "foregroundColor":
+                        setCustomStyle((prev) => ({
+                            ...prev,
+                            color: isColorValid(param.trim())
+                        }));
+                        break;
+                    default:
+                        setCustomStyle({});
+                }
             } else {
                 setCustomStyle({});
             }

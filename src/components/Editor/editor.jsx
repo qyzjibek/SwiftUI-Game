@@ -17,7 +17,7 @@ export const Editor = ({text, label, isValidAnswer, level}) => {
             ${label}
 `}
                 </pre>
-                <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange} style={{height: `${level < 2 ? "24px" : "48px"}`}}></textarea>
+                <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange} style={{height: `${level < 3 ? "24px" : "48px"}`}}></textarea>
                 <pre>
 {`
         }

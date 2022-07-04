@@ -1,7 +1,8 @@
 import { Description1} from "../components/Description/desc1";
 import { Description2} from "../components/Description/desc2";
+import { Description3 } from "../components/Description/desc3";
 
-const isValidColor = (style) => {
+const isValidBackgroundColor = (style) => {
     if (style.hasOwnProperty('background') || style.hasOwnProperty('backgroundColor')) {
       return (style.background != "" || style.backgroundColor != "") ? true : false;
     }
@@ -9,25 +10,36 @@ const isValidColor = (style) => {
     return false
   }
   
-  const isValidFont= (style) => {
+const isValidFont = (style) => {
     if (style.hasOwnProperty('fontWeight') || style.hasOwnProperty('fontStyle')) {
-      return (style.fontWeight == "bold" || style.fontStyle == "italic") ? true : false;
+        return (style.fontWeight == "bold" || style.fontStyle == "italic") ? true : false;
     }
-  
+
     return false
-  }
+}
+
+const isValidColor = (style) => {
+    if (style.hasOwnProperty('color')) {
+        return (style.color != "") ? true : false;
+      }
+    
+      return false
+}
   
   export const levelsData = [
     {
-      level: 1,
       textLabel: "Hello SwiftUI",
       description: <Description1 />,
-      isValidAnswer: isValidColor
+      isValidAnswer: isValidBackgroundColor
     },
     {
-      level: 2,
+        textLabel: "Make me any color",
+        description: <Description3/>,
+        isValidAnswer: isValidColor
+    },
+    {
       textLabel: "Make me bold, then italic",
       description: <Description2/>,
       isValidAnswer: isValidFont
-    }
+    },
   ]
