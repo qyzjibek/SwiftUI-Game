@@ -1,6 +1,7 @@
 import { Description1} from "../components/Description/desc1";
 import { Description2} from "../components/Description/desc2";
 import { Description3 } from "../components/Description/desc3";
+import { Description4 } from "../components/Description/desc4";
 
 const isValidBackgroundColor = (style) => {
     if (style.hasOwnProperty('background') || style.hasOwnProperty('backgroundColor')) {
@@ -25,6 +26,14 @@ const isValidColor = (style) => {
     
       return false
 }
+
+const isValidOpacity = (style) => {
+  if (style.hasOwnProperty('opacity')) {
+      return (style.opacity == "0.0") ? true : false;
+  }
+
+  return false
+}
   
   export const levelsData = [
     {
@@ -41,5 +50,10 @@ const isValidColor = (style) => {
       textLabel: "Make me bold, then italic",
       description: <Description2/>,
       isValidAnswer: isValidFont
+    },
+    {
+      textLabel: "Make me invisible",
+      description: <Description4/>,
+      isValidAnswer: isValidOpacity
     },
   ]
