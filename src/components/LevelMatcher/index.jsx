@@ -18,8 +18,8 @@ export const LevelMatcherStyle = ({level, setLevel}) => {
     setEditorContent(event.target.value);
   }
 
-  const handleLevelChange = () => {
-    setLevel((prev) => (prev < 2 ? prev+1 : prev));
+  const handleLevelChange = (val) => {
+    setLevel((prev) => (prev < 3 ? prev+val : prev));
     setCustomStyle({});
     setEditorContent("");
   }
