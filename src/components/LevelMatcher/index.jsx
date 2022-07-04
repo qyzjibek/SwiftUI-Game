@@ -4,53 +4,15 @@ import { useState } from 'react';
 import { GameSimulator } from '../SImulator';
 import { GameDescription } from '../Description/description';
 import { Editor } from '../Editor/editor';
-/*
-const isValidColor = (style) => {
-  if (style.hasOwnProperty('background') || style.hasOwnProperty('backgroundColor')) {
-    return (style.background != "" || style.backgroundColor != "") ? true : false;
-  }
 
-  return false
-}
-
-const isValidFont= (style) => {
-  if (style.hasOwnProperty('fontWeight') || style.hasOwnProperty('fontStyle')) {
-    return (style.fontWeight == "bold" || style.fontStyle == "italic") ? true : false;
-  }
-
-  return false
-}
-
-const levelsData = [
-  {
-    level: 1,
-    textLabel: "Hello SwiftUI",
-    isValid: isValidColor
-  },
-  {
-    level: 2,
-    textLabel: "Make me bold, then italic",
-    isValid: isValidFont
-  }
-]
-
-*/
+import { levelsData } from '../../model/levelsData';
 
 export const LevelMatcherStyle = ({level, setLevel}) => {
+  const data = levelsData[level-1];
+
   const [editorContent, setEditorContent] = useState("");
 
   const [customStyle, setCustomStyle] = useState({});
-
-  const getLabel = () => {
-    switch (level) {
-      case 1:
-        return "Hello SwiftUI"
-      case 2: 
-        return "Make me bold, then italic"
-      default: 
-        return "Hello World!"
-    }
-  }
   
   const handleContentChange = (event) => {
     setEditorContent(event.target.value);
@@ -61,40 +23,13 @@ export const LevelMatcherStyle = ({level, setLevel}) => {
     setCustomStyle({});
     setEditorContent("");
   }
- 
-  const isValidColor = (style) => {
-    if (style.hasOwnProperty('background') || style.hasOwnProperty('backgroundColor')) {
-      return (style.background != "" || style.backgroundColor != "") ? true : false;
-    }
 
-    return false
-  }
-
-  const isValidFont= (style) => {
-    if (style.hasOwnProperty('fontWeight') || style.hasOwnProperty('fontStyle')) {
-      return (style.fontWeight == "bold" || style.fontStyle == "italic") ? true : false;
-    }
-
-    return false
-  }
-
-  const isValidAnswer = (style) => {
-    // style.background != "" || style.backgroundColor != ""
-    switch (level) {
-      case 1:
-        return isValidColor(style);
-      case 2:
-        return isValidFont(style);
-      default:
-        return false
-    }
-    
-  }
+  console.log(levelsData, level)
     return (
       <EditorContext.Provider value={{ handleContentChange, editorContent, customStyle, setCustomStyle, handleLevelChange }}>
-        <GameSimulator label={getLabel()}/>
+        <GameSimulator label={data.textLabel}/>
         <GameDescription level={level}/>
-        <Editor level={level} text={editorContent} label={`Text("${getLabel()}")`} isValidAnswer={isValidAnswer}/>
+        <Editor level={level} text={editorContent} label={`Text("${data.textLabel}")`} isValidAnswer={data.isValidAnswer}/>
     </EditorContext.Provider>
     );
   };
