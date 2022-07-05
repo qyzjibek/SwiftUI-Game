@@ -32,7 +32,7 @@ export const LevelMatcherStyle = ({level, setLevel}) => {
 
     return (
       <EditorContext.Provider value={{ handleContentChange, editorContent, customStyle, setCustomStyle, handleLevelIncr, handleLevelDecr }}>
-        <GameSimulator label={data.textLabel}/>
+        <GameSimulator label={data.textLabel} level={level}/>
         <GameDescription level={level}/>
         <Editor level={level} text={editorContent} label={`Text("${data.textLabel}")`} isValidAnswer={data.isValidAnswer}/>
     </EditorContext.Provider>

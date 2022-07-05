@@ -6,14 +6,17 @@ import {ReactComponent as CanvasSVG} from '../../assets/simulator.svg'
 import { useParser } from '../../utils/useParser';
 
 
-export const GameSimulator = ({label}) => {
+export const GameSimulator = ({label, level}) => {
     const {editorContent, customStyle} = useContext(EditorContext);
-    const {addStyle} = useParser();
+    const {addStyle, addCustomStyle} = useParser();
     
     useEffect(() => {
         addStyle();
-    }, [editorContent])
+    }, [editorContent]);
 
+    useEffect(() => {
+        addCustomStyle(4);
+    }, []);
 
     return (
         <div className="game-simulator">
