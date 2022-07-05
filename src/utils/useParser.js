@@ -18,20 +18,13 @@ function isOpacityValid(num) {
 export const useParser=()=>{
     const {editorContent, setCustomStyle} = useContext(EditorContext);
 
-    function parseNumber(content) {
-        console.log("here");
-        // let num;
-        // for(let i = 0; i < content.length; i++) {
-        //     console.log(c);
-        //     const c = content[i];
-        //     switch (c) {
-        //         case isDigit(c):
-        //             console.log(c);
-        //             num += c;
-        //     }
-        // }
+    function indexesOf(c, content) {
+        let arr = [];
+        for (let i = 0; i < content.length; i++) {
+            if (c == content[i]) arr.push(i);
+        }
 
-        return 5;
+        return arr;
     }
 
     function isDigit(c) {
@@ -39,16 +32,13 @@ export const useParser=()=>{
     }
 
     function addStyle() {
-        // TODO: consider the case when content will be erased at once
-        // if (content == "") {
-        //     // setCustomStyle({});
-        //     return;
-        // }
         const content = editorContent.trim();
         var indicesOfDot = [];
         for(var i = 0; i < content.length; i++) {
-            const paramIndex = content.indexOf("(");
-            if (content[i] === '.' && content[i-1] !== '(' && paramIndex > i) indicesOfDot.push(i);
+            const paramIndexes = indexesOf('(', content);
+            for (const index of paramIndexes) {
+                if (content[i] === '.' && content[i-1] !== '(' && i < index) indicesOfDot.push(i);
+            }
         }
 
         for(var i = 0; i < indicesOfDot.length; i++) {
@@ -74,15 +64,12 @@ export const useParser=()=>{
                         ...prev,
                         opacity: 0
                     }));
-                } else {
-                    setCustomStyle({});
                 }
             } else if (end > begin) {
                 const token = functionCall.slice(0, begin);
                 const paramBegin = functionCall.indexOf('.');
                 const paramType = functionCall.slice(begin+1, paramBegin);
                 const param = functionCall.slice(paramBegin+1, end);
-                console.log(functionCall.slice(begin+1, end));
 
                 switch (token) {
                     case "background":
@@ -108,14 +95,16 @@ export const useParser=()=>{
                     default:
                         setCustomStyle({});
                 }
-            } else {
+            } else if (indicesOfDot.length < 2) {
+                console.log("erase");
                 setCustomStyle({});
-            }
+            } 
         }
     }
 
     function addCustomStyle(level) {
         if(level == 4) {
+            console.log(level);
             setCustomStyle({
                 backgroundColor: "red"
             });

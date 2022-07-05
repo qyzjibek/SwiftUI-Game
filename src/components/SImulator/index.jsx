@@ -7,15 +7,16 @@ import { useParser } from '../../utils/useParser';
 
 
 export const GameSimulator = ({label, level}) => {
-    const {editorContent, customStyle} = useContext(EditorContext);
+    const {editorContent, customStyle, setCustomStyle} = useContext(EditorContext);
     const {addStyle, addCustomStyle} = useParser();
     
     useEffect(() => {
-        addStyle();
+        if (editorContent == "") setCustomStyle({});
+        else addStyle();
     }, [editorContent]);
 
     useEffect(() => {
-        addCustomStyle(4);
+        addCustomStyle(level);
     }, []);
 
     return (
