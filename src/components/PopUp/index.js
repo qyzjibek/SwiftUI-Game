@@ -1,6 +1,6 @@
 import "./index.css"
 import { useContext } from "react";
-import { EditorContext } from "../../Context";
+import { EditorContext, StyleContext } from "../../Context";
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -50,7 +50,8 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function CustomizedDialogs({isValidAnswer, level}) {
-  const {customStyle, handleLevelIncr} = useContext(EditorContext);
+  const { handleLevelIncr } = useContext(EditorContext);
+  const { customStyle } = useContext(StyleContext);
 
   const [open, setOpen] = React.useState(false);
 

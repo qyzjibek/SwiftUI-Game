@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { EditorContext } from '../../Context';
+import { EditorContext, StyleContext } from '../../Context';
 import { useEffect } from 'react';
 import './index.css'
 import {ReactComponent as CanvasSVG} from '../../assets/simulator.svg'
@@ -7,7 +7,8 @@ import { useParser } from '../../utils/useParser';
 
 
 export const GameSimulator = ({label, level}) => {
-    const {editorContent, customStyle, setCustomStyle} = useContext(EditorContext);
+    const { editorContent } = useContext(EditorContext);
+    const { customStyle, setCustomStyle } = useContext(StyleContext);
     const {addStyle, addCustomStyle} = useParser();
     
     useEffect(() => {

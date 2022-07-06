@@ -1,6 +1,6 @@
 import { breadcrumbsClasses } from '@mui/material';
 import {useContext} from 'react';
-import { EditorContext } from '../Context';
+import { EditorContext, StyleContext } from '../Context';
 import { CSS_COLOR_NAMES } from '../data/colorPallet';
 
 function capitalizeFirstLetter(string) {
@@ -12,7 +12,8 @@ function isColorValid(color) {
 }
 
 export const useParser=()=>{
-    const {editorContent, setCustomStyle} = useContext(EditorContext);
+    const {editorContent} = useContext(EditorContext);
+    const { setCustomStyle } = useContext(StyleContext);
 
     function indexesOf(c, content) {
         let arr = [];
@@ -61,6 +62,7 @@ export const useParser=()=>{
                         opacity: 0
                     }));
                 }
+                console.log("without");
             } else if (end > begin) {
                 const token = functionCall.slice(0, begin);
                 const paramBegin = functionCall.indexOf('.');
@@ -83,14 +85,14 @@ export const useParser=()=>{
                         break;
                     case "opacity":
                         const opacity = functionCall.slice(begin+1, end).trim();
-                        setCustomStyle({
-                            // backgroundColor: "rgb(255, 69, 58)",
-                            opacity: Number(opacity)
-                        });
+                        setCustomStyle((prev) => ({
+                            ...prev,
+                             // backgroundColor: "rgb(255, 69, 58)",
+                             opacity: Number(opacity)
+                        }));
                         break;
                     case "cornerRadius":
                         const radius = functionCall.slice(begin+1, end).trim();
-                        console.log(Number(radius));
                         setCustomStyle({
                             backgroundColor: "rgb(48, 209, 88)",
                             borderRadius: Number(radius)
@@ -99,8 +101,10 @@ export const useParser=()=>{
                     default:
                         setCustomStyle({});
                 }
+
+                console.log("with");
             } else if (indicesOfDot.length < 2) {
-                console.log("erase");
+                console.log("less than 2")
                 setCustomStyle({});
             } 
         }

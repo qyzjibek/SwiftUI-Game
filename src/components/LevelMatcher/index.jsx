@@ -1,5 +1,5 @@
-import { EditorContext } from '../../Context';
-import { useState } from 'react';
+import { EditorContext, StyleContext } from '../../Context';
+import { useState, useContext  } from 'react';
 
 import { GameSimulator } from '../SImulator';
 import { GameDescription } from '../Description/description';
@@ -11,9 +11,9 @@ export const LevelMatcherStyle = ({level, setLevel}) => {
   const data = levelsData[level-1];
 
   const [editorContent, setEditorContent] = useState("");
-
-  const [customStyle, setCustomStyle] = useState({});
   
+  const {customStyle, setCustomStyle } = useContext(StyleContext);
+
   const handleContentChange = (event) => {
     setEditorContent(event.target.value);
   }
@@ -31,11 +31,12 @@ export const LevelMatcherStyle = ({level, setLevel}) => {
   }
 
     return (
-      <EditorContext.Provider value={{ handleContentChange, editorContent, customStyle, setCustomStyle, handleLevelIncr, handleLevelDecr }}>
+      <EditorContext.Provider value={{ handleContentChange, editorContent, handleLevelIncr, handleLevelDecr }}>
+        <StyleContext.Provider value={{customStyle, setCustomStyle}}></StyleContext.Provider>
         <GameSimulator label={data.textLabel} level={level}/>
         <GameDescription level={level}/>
         <Editor level={level} text={editorContent} label={`Text("${data.textLabel}")`} isValidAnswer={data.isValidAnswer}/>
-    </EditorContext.Provider>
+      </EditorContext.Provider>
     );
   };
   

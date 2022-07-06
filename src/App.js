@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import { StyleContext } from './Context';
 
 import { NavBar } from './components/NavBar';
 import { LevelMatcherStyle } from './components/LevelMatcher';
@@ -7,6 +8,7 @@ import { useParser } from './utils/useParser';
 
 function App() {
   const [level, setLevel] = useState(Number(localStorage.getItem('level')) || 1);
+  const [customStyle, setCustomStyle] = useState({});
 
   const {addCustomStyle} = useParser();
 
@@ -18,7 +20,9 @@ function App() {
   return (
     <>
       <NavBar /> 
-      <LevelMatcherStyle level={level} setLevel={setLevel}/>
+      <StyleContext.Provider value={{customStyle, setCustomStyle}}>
+        <LevelMatcherStyle level={level} setLevel={setLevel}/>
+      </StyleContext.Provider>
     </>
   );
 }
