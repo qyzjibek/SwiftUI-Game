@@ -1,4 +1,3 @@
-import { breadcrumbsClasses } from '@mui/material';
 import {useContext} from 'react';
 import { EditorContext, StyleContext } from '../Context';
 import { CSS_COLOR_NAMES } from '../data/colorPallet';
@@ -18,14 +17,10 @@ export const useParser=()=>{
     function indexesOf(c, content) {
         let arr = [];
         for (let i = 0; i < content.length; i++) {
-            if (c == content[i]) arr.push(i);
+            if (c === content[i]) arr.push(i);
         }
 
         return arr;
-    }
-
-    function isDigit(c) {
-        return c >= '0' && c <= '9';
     }
 
     function addStyle() {
@@ -62,12 +57,13 @@ export const useParser=()=>{
                         opacity: 0
                     }));
                 }
-                console.log("without");
             } else if (end > begin) {
                 const token = functionCall.slice(0, begin);
                 const paramBegin = functionCall.indexOf('.');
                 const paramType = functionCall.slice(begin+1, paramBegin);
                 const param = functionCall.slice(paramBegin+1, end);
+
+                console.log(param);
 
                 switch (token) {
                     case "background":
@@ -101,31 +97,12 @@ export const useParser=()=>{
                     default:
                         setCustomStyle({});
                 }
-
-                console.log("with");
             } else if (indicesOfDot.length < 2) {
-                console.log("less than 2")
                 setCustomStyle({});
             } 
         }
     }
 
-    function addCustomStyle(level) {
-        switch (level) {
-            case 4:
-                setCustomStyle({
-                    backgroundColor: "rgb(255, 69, 58)"
-                }); 
-                break;
-            case 5:
-                setCustomStyle({
-                    backgroundColor: "rgb(48, 209, 88)"
-                });
-                break;
-            default: return;
-        }
-    }
-
-    return {addStyle, addCustomStyle}
+    return {addStyle}
     
 }

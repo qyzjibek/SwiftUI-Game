@@ -19,7 +19,7 @@ export const LevelMatcherStyle = ({level, setLevel}) => {
   }
 
   const handleLevelIncr = () => {
-    setLevel((prev) => (prev < 5 ? prev+1 : prev));
+    setLevel((prev) => (prev < 6 ? prev+1 : prev));
     setCustomStyle({});
     setEditorContent("");
   }

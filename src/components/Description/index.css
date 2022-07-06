@@ -30,7 +30,7 @@ pre {
 }
 
 .desc-code {
-    margin: 28px 64px;
+    padding: 10px;
 }
 
 .control-btn {
@@ -42,4 +42,9 @@ pre {
 .control-btn-image {
     width: 24px;
     height: 24px;
+}
+
+#picture {
+    display: flex;
+    justify-content: center;
 }

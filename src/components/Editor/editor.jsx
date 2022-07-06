@@ -1,5 +1,5 @@
 import "./index.css"
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { EditorContext } from "../../Context";
 import CustomizedDialogs from "../PopUp";
 
@@ -9,7 +9,8 @@ export const Editor = ({text, label, isValidAnswer, level}) => {
     const textModifier = () => {
         switch (level) {
             case 4: return ".background(.red)";
-            case 5: return ".background(.green)";
+            case 5: return ".background(.green)"; 
+            case 6: return ".background(.yellow)";
             default: return "";
         }
     }

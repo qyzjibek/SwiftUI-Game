@@ -4,17 +4,15 @@ import { StyleContext } from './Context';
 
 import { NavBar } from './components/NavBar';
 import { LevelMatcherStyle } from './components/LevelMatcher';
-import { useParser } from './utils/useParser';
+import { addCustomStyle } from './utils/addCustomStyle';
 
 function App() {
   const [level, setLevel] = useState(Number(localStorage.getItem('level')) || 1);
   const [customStyle, setCustomStyle] = useState({});
 
-  const {addCustomStyle} = useParser();
-
   useEffect(() => {
     localStorage.setItem('level', level);
-    // addCustomStyle(level);
+    setCustomStyle(addCustomStyle(level));
   }, [level]);
 
   return (
