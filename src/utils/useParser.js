@@ -1,6 +1,7 @@
 import {useContext} from 'react';
 import { EditorContext, StyleContext } from '../Context';
 import { CSS_COLOR_NAMES } from '../data/colorPallet';
+import { addCustomStyle } from './addCustomStyle';
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -21,6 +22,35 @@ export const useParser=()=>{
         }
 
         return arr;
+    }
+
+    function isValidAlignment(alignment) {
+        console.log(alignment.slice(1));
+        switch (alignment.slice(1)) {
+            case "trailing": return "end";
+            case "leading": return "start";
+            case "center": return "center";
+            default: return "";
+        }
+    }
+
+    function makeStyle(functionCall, begin, end) {
+        const parameters = functionCall.slice(begin+1, end).split(',');
+        if (parameters.length > 1) {
+            let style = {};
+            for (const parameter of parameters) {
+                const semicolon = parameter.indexOf(':');
+                const name = parameter.slice(0, semicolon).trim();
+                const value = parameter.slice(semicolon+1, end).trim();
+                if (name == "alignment" && value.startsWith('.')) {
+                    style["textAlign"] = isValidAlignment(value);
+                } else {
+                    style[name] = value + "px";
+                }
+            }
+            console.log(style);
+            return style;
+        }
     }
 
     function addStyle() {
@@ -63,8 +93,6 @@ export const useParser=()=>{
                 const paramType = functionCall.slice(begin+1, paramBegin);
                 const param = functionCall.slice(paramBegin+1, end);
 
-                console.log(param);
-
                 switch (token) {
                     case "background":
                         // console.log(paramType != "Color",  paramType != "")
@@ -89,10 +117,17 @@ export const useParser=()=>{
                         break;
                     case "cornerRadius":
                         const radius = functionCall.slice(begin+1, end).trim();
-                        setCustomStyle({
-                            backgroundColor: "rgb(48, 209, 88)",
-                            borderRadius: Number(radius)
-                        });
+                        setCustomStyle((prev) => ({
+                            ...prev,
+                             // backgroundColor: "rgb(48, 209, 88)",
+                             borderRadius: Number(radius)
+                        }));
+                        break;
+                    case "frame":
+                        setCustomStyle((prev) => ({
+                            ...prev,
+                            ...makeStyle(functionCall, begin, end)
+                        }));
                         break;
                     default:
                         setCustomStyle({});

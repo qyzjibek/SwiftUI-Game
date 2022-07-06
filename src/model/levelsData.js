@@ -6,8 +6,8 @@ import { Description5 } from "../components/Description/levelDescriptions/desc5"
 import { Description6 } from "../components/Description/levelDescriptions/desc6";
 
 const isValidBackgroundColor = (style) => {
-    if (style.hasOwnProperty('background') || style.hasOwnProperty('backgroundColor')) {
-      return (!style.background || !style.backgroundColor) ? true : false;
+    if (style.hasOwnProperty('backgroundColor')) {
+      return (!style.backgroundColor) ? false : true;
     }
   
     return false
@@ -15,7 +15,7 @@ const isValidBackgroundColor = (style) => {
   
 const isValidFont = (style) => {
     if (style.hasOwnProperty('fontWeight') || style.hasOwnProperty('fontStyle')) {
-        return (style.fontWeight === "bold" || style.fontStyle === "italic") ? true : false;
+        return (style.fontWeight === "bold" && style.fontStyle === "italic") ? true : false;
     }
 
     return false
@@ -43,6 +43,14 @@ const isValidRadius = (style) => {
   }
 
   return false
+}
+
+const isValidFrame = (style) => {
+  if (style.hasOwnProperty('width') || style.hasOwnProperty('height')) {
+    return (!style.width && !style.height) ? false : true;
+}
+
+return false
 }
  
   export const levelsData = [
@@ -74,6 +82,6 @@ const isValidRadius = (style) => {
     {
       textLabel: "Give me a frame",
       description: <Description6/>,
-      isValidAnswer: isValidRadius
+      isValidAnswer: isValidFrame
     },
   ]

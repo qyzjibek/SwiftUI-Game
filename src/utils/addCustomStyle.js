@@ -8,6 +8,10 @@ export const addCustomStyle = (level) => {
             return {
                 backgroundColor: "rgb(48, 209, 88)"
             }
+        case 6:
+            return {
+                backgroundColor: "rgb(255, 214, 10)"
+            }
         default: return;
     }
 }
