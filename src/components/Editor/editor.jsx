@@ -6,7 +6,13 @@ import CustomizedDialogs from "../PopUp";
 export const Editor = ({text, label, isValidAnswer, level}) => {
     const {handleContentChange} = useContext(EditorContext);
 
-    const textModifier = level == 4 ? "\t .background(.red)" : "";
+    const textModifier = () => {
+        switch (level) {
+            case 4: return ".background(.red)";
+            case 5: return ".background(.green)";
+            default: return "";
+        }
+    }
     return (
         <div className="editor-wrapper">
             <div className="editor-content">
@@ -17,7 +23,7 @@ export const Editor = ({text, label, isValidAnswer, level}) => {
     struct ContentView: View {
         var body: some View {
             ${label}
-            ${textModifier}
+            ${textModifier()}
 `}
                 </pre>
                 <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange} style={{height: `${level < 3 ? "24px" : "48px"}`}}></textarea>

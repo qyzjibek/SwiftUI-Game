@@ -1,3 +1,4 @@
+import { breadcrumbsClasses } from '@mui/material';
 import {useContext} from 'react';
 import { EditorContext } from '../Context';
 import { CSS_COLOR_NAMES } from '../data/colorPallet';
@@ -7,12 +8,7 @@ function capitalizeFirstLetter(string) {
 }
 
 function isColorValid(color) {
-    // TODO: Parse Color
     return CSS_COLOR_NAMES.includes(capitalizeFirstLetter(color)) ? color : "";
-}
-
-function isOpacityValid(num) {
-    return num <= 1.0 && num >= 0.0;
 }
 
 export const useParser=()=>{
@@ -86,10 +82,18 @@ export const useParser=()=>{
                         }));
                         break;
                     case "opacity":
-                        const num = functionCall.slice(begin+1, end).trim();
+                        const opacity = functionCall.slice(begin+1, end).trim();
                         setCustomStyle({
-                            backgroundColor: `rgba(255,0,0,${Number(num)}`
-                            // opacity: Number(num)
+                            // backgroundColor: "rgb(255, 69, 58)",
+                            opacity: Number(opacity)
+                        });
+                        break;
+                    case "cornerRadius":
+                        const radius = functionCall.slice(begin+1, end).trim();
+                        console.log(Number(radius));
+                        setCustomStyle({
+                            backgroundColor: "rgb(48, 209, 88)",
+                            borderRadius: Number(radius)
                         });
                         break;
                     default:
@@ -103,11 +107,18 @@ export const useParser=()=>{
     }
 
     function addCustomStyle(level) {
-        if(level == 4) {
-            console.log(level);
-            setCustomStyle({
-                backgroundColor: "red"
-            });
+        switch (level) {
+            case 4:
+                setCustomStyle({
+                    backgroundColor: "rgb(255, 69, 58)"
+                }); 
+                break;
+            case 5:
+                setCustomStyle({
+                    backgroundColor: "rgb(48, 209, 88)"
+                });
+                break;
+            default: return;
         }
     }
 

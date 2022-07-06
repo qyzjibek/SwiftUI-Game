@@ -1,7 +1,8 @@
-import { Description1} from "../components/Description/desc1";
-import { Description2} from "../components/Description/desc2";
-import { Description3 } from "../components/Description/desc3";
-import { Description4 } from "../components/Description/desc4";
+import { Description1} from "../components/Description/levelDescriptions/desc1";
+import { Description2} from "../components/Description/levelDescriptions/desc2";
+import { Description3 } from "../components/Description/levelDescriptions/desc3";
+import { Description4 } from "../components/Description/levelDescriptions/desc4";
+import { Description5 } from "../components/Description/levelDescriptions/desc5";
 
 const isValidBackgroundColor = (style) => {
     if (style.hasOwnProperty('background') || style.hasOwnProperty('backgroundColor')) {
@@ -29,12 +30,20 @@ const isValidColor = (style) => {
 
 const isValidOpacity = (style) => {
   if (style.hasOwnProperty('opacity')) {
-      return (style.opacity == "0.0") ? true : false;
+      return (Number(style.opacity) <= 1.0 && Number(style.opacity) >= 0.0) ? true : false;
   }
 
   return false
 }
-  
+
+const isValidRadius = (style) => {
+  if (style.hasOwnProperty('opacity')) {
+      return (Number(style.opacity) <= 1.0 && Number(style.opacity) >= 0.0) ? true : false;
+  }
+
+  return false
+}
+ 
   export const levelsData = [
     {
       textLabel: "Hello SwiftUI",
@@ -55,5 +64,10 @@ const isValidOpacity = (style) => {
       textLabel: "Make me invisible",
       description: <Description4/>,
       isValidAnswer: isValidOpacity
+    },
+    {
+      textLabel: "Make me Rounded",
+      description: <Description5/>,
+      isValidAnswer: isValidRadius
     },
   ]
