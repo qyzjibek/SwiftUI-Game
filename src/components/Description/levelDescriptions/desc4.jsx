@@ -4,7 +4,7 @@ export const Description4= () => {
     return (
          <>
             <div className='instructions'>
-                <p style={{fontWeight: "bold"}}>How to adjust the opacity of a view?</p>
+                <p className='level-title'>How to adjust the opacity of a view?</p>
                 <p>Any SwiftUI view can be partially or wholly transparent using the opacity() modifier. This accepts a value between 0 (completely invisible) and 1 (fully opaque), just like the alpha property of UIView in UIKit.</p>
                 <p>For example, this creates a text view with a red background, then gives it 30% opacity: </p>
                 <pre className='desc-code'>

@@ -4,7 +4,7 @@ export const Description2= () => {
     return (
          <>
             <div className='instructions'>
-                <p>How to style Text view in SwiftUI</p>
+                <p className='level-title'>How to style Text view in SwiftUI</p>
                 <p>You can style SwiftUI Text views with a bunch of dedicated ViewModifiers.</p>
                 <p style={{fontWeight: "bold"}}>How to apply italic text style?</p>
                 <pre className='desc-code'>

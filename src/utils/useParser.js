@@ -14,6 +14,68 @@ function isTextCaseValid(param) {
     return param === "uppercase" || param === "lowercase" ? param : "";
 }
 
+function isFontValid(param) {
+    const paramBegin = param.indexOf("(");
+    const token = param.slice(0, paramBegin);
+    const parameter = param.slice(paramBegin+1);
+
+    if (token == "system") {
+        const semic = parameter.indexOf(':');
+        const name = parameter.slice(0, semic).trim();
+        const value = parameter.slice(semic+1).trim();
+        if (name == "size") return { fontSize: value + "px"};
+    }
+    console.log(token, parameter);
+    switch (param) {
+        case "headline":
+            return {
+                fontWeight: 600,
+                fontSize: "17px"
+            };
+        case "largeTitle":
+            return {
+                fontSize: "34px"
+            };
+        case "title1":
+            return {
+                fontSize: "28px"
+            };
+        case "title2":
+            return {
+                fontSize: "22px"
+            };
+        case "title3":
+            return {
+                fontSize: "20px"
+            };
+        case "callout":
+            return {
+                fontSize: "16px"
+            };
+        case "subheadline":
+            return {
+                fontSize: "15px"
+            };
+        case "body":
+            return {
+                fontSize: "17px"
+            };
+        case "footnote":
+            return {
+                fontSize: "13px"
+            };
+        case "caption1":
+            return {
+                fontSize: "12px"
+            };
+        case "caption2":
+            return {
+                fontSize: "11px"
+            };
+        default: return {};
+    }
+}
+
 export const useParser=()=>{
     const {editorContent} = useContext(EditorContext);
     const { setCustomStyle, customStyle } = useContext(StyleContext);
@@ -66,7 +128,7 @@ export const useParser=()=>{
 
         for(var i = 0; i < indicesOfDot.length; i++) {
             const index = indicesOfDot[i];
-            const functionCall = i == 1 ? content.slice(index+1).trim() : content.slice(index+1, indicesOfDot[i+1]).trim();
+            const functionCall = i == (indicesOfDot.length - 1) ? content.slice(index+1).trim() : content.slice(index+1, indicesOfDot[i+1]).trim();
             const begin =  functionCall.indexOf('(');
             const end = functionCall.indexOf(')');
 
@@ -139,6 +201,12 @@ export const useParser=()=>{
                         setCustomStyle((prev) => ({
                             ...prev,
                             textTransform: isTextCaseValid(param.trim())
+                        }));
+                        break;
+                    case "font":
+                        setCustomStyle((prev) => ({
+                            ...prev,
+                            ...isFontValid(param.trim())
                         }));
                         break;
                     default:
