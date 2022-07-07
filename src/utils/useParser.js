@@ -1,7 +1,6 @@
 import {useContext} from 'react';
 import { EditorContext, StyleContext } from '../Context';
 import { CSS_COLOR_NAMES } from '../data/colorPallet';
-import { addCustomStyle } from './addCustomStyle';
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -10,6 +9,11 @@ function capitalizeFirstLetter(string) {
 function isColorValid(color) {
     return CSS_COLOR_NAMES.includes(capitalizeFirstLetter(color)) ? color : "";
 }
+
+function isTextCaseValid(param) {
+    return param === "uppercase" || param === "lowercase" ? param : "";
+}
+
 export const useParser=()=>{
     const {editorContent} = useContext(EditorContext);
     const { setCustomStyle, customStyle } = useContext(StyleContext);
@@ -83,12 +87,18 @@ export const useParser=()=>{
                         ...prev,
                         opacity: 0
                     }));
+                } else if (token== "underline") {
+                    setCustomStyle((prev) => ({
+                        ...prev,
+                        textDecoration: "underline"
+                    }));
                 }
             } else if (end > begin) {
                 const token = functionCall.slice(0, begin);
                 const paramBegin = functionCall.indexOf('.');
                 const paramType = functionCall.slice(begin+1, paramBegin);
                 const param = functionCall.slice(paramBegin+1, end);
+
                 switch (token) {
                     case "background":
                         // console.log(paramType != "Color",  paramType != "")
@@ -123,6 +133,12 @@ export const useParser=()=>{
                         setCustomStyle((prev) => ({
                             ...prev,
                             ...makeStyle(functionCall, begin, end)
+                        }));
+                        break;
+                    case "textCase":
+                        setCustomStyle((prev) => ({
+                            ...prev,
+                            textTransform: isTextCaseValid(param.trim())
                         }));
                         break;
                     default:

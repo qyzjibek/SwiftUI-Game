@@ -4,6 +4,7 @@ import { Description3 } from "../components/Description/levelDescriptions/desc3"
 import { Description4 } from "../components/Description/levelDescriptions/desc4";
 import { Description5 } from "../components/Description/levelDescriptions/desc5";
 import { Description6 } from "../components/Description/levelDescriptions/desc6";
+import { Description7 } from "../components/Description/levelDescriptions/desc7";
 
 const isValidBackgroundColor = (style) => {
     if (style.hasOwnProperty('backgroundColor')) {
@@ -82,6 +83,11 @@ return false
     {
       textLabel: "Give me a frame",
       description: <Description6/>,
+      isValidAnswer: isValidFrame
+    },
+    {
+      textLabel: "Transform me",
+      description: <Description7/>,
       isValidAnswer: isValidFrame
     },
   ]
