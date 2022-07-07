@@ -10,10 +10,9 @@ function capitalizeFirstLetter(string) {
 function isColorValid(color) {
     return CSS_COLOR_NAMES.includes(capitalizeFirstLetter(color)) ? color : "";
 }
-
 export const useParser=()=>{
     const {editorContent} = useContext(EditorContext);
-    const { setCustomStyle } = useContext(StyleContext);
+    const { setCustomStyle, customStyle } = useContext(StyleContext);
 
     function indexesOf(c, content) {
         let arr = [];
@@ -25,7 +24,6 @@ export const useParser=()=>{
     }
 
     function isValidAlignment(alignment) {
-        console.log(alignment.slice(1));
         switch (alignment.slice(1)) {
             case "trailing": return "end";
             case "leading": return "start";
@@ -48,7 +46,6 @@ export const useParser=()=>{
                     style[name] = value + "px";
                 }
             }
-            console.log(style);
             return style;
         }
     }
@@ -92,7 +89,6 @@ export const useParser=()=>{
                 const paramBegin = functionCall.indexOf('.');
                 const paramType = functionCall.slice(begin+1, paramBegin);
                 const param = functionCall.slice(paramBegin+1, end);
-
                 switch (token) {
                     case "background":
                         // console.log(paramType != "Color",  paramType != "")
@@ -133,7 +129,7 @@ export const useParser=()=>{
                         setCustomStyle({});
                 }
             } else if (indicesOfDot.length < 2) {
-                setCustomStyle({});
+                return;
             } 
         }
     }

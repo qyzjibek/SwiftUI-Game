@@ -12,8 +12,7 @@ export const GameSimulator = ({label, level}) => {
     const {addStyle} = useParser();
     
     useEffect(() => {
-        if (editorContent == "") setCustomStyle({});
-        else addStyle();
+        if (editorContent == "") setCustomStyle( addCustomStyle(level)); else addStyle();
     }, [editorContent]);
 
     useEffect(() => {
