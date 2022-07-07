@@ -38,16 +38,16 @@ const isValidOpacity = (style) => {
 }
 
 const isValidRadius = (style) => {
-  if (style.hasOwnProperty('opacity')) {
-      return (Number(style.opacity) <= 1.0 && Number(style.opacity) >= 0.0) ? true : false;
+  if (style.hasOwnProperty('borderRadius')) {
+      return (!style.borderRadius) ? false : true;
   }
 
   return false
 }
 
 const isValidFrame = (style) => {
-  if (style.hasOwnProperty('width') || style.hasOwnProperty('height')) {
-    return (!style.width && !style.height) ? false : true;
+  if (style.hasOwnProperty('width') || style.hasOwnProperty('height') || style.hasOwnProperty('alignment')) {
+    return (!style.width && !style.height && !style.alignment) ? false : true;
 }
 
 return false

@@ -1,4 +1,4 @@
-import { EditorContext, StyleContext } from '../../Context';
+import { EditorContext, StyleContext, LevelContext } from '../../Context';
 import { useState, useContext  } from 'react';
 
 import { GameSimulator } from '../SImulator';
@@ -14,18 +14,20 @@ export const LevelMatcherStyle = ({level, setLevel}) => {
   
   const {customStyle, setCustomStyle } = useContext(StyleContext);
 
+  const {minLevel, maxLevel} = useContext(LevelContext);
+
   const handleContentChange = (event) => {
     setEditorContent(event.target.value);
   }
 
   const handleLevelIncr = () => {
-    setLevel((prev) => (prev < 6 ? prev+1 : prev));
+    setLevel((prev) => (prev < maxLevel ? prev+1 : prev));
     setCustomStyle({});
     setEditorContent("");
   }
 
   const handleLevelDecr = () => {
-    setLevel((prev) => (prev > 1 ? prev-1 : prev));
+    setLevel((prev) => (prev > minLevel ? prev-1 : prev));
     setCustomStyle({});
     setEditorContent("");
   }
