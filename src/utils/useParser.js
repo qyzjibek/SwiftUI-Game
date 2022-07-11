@@ -1,3 +1,5 @@
+import { Block, ViewColumn } from '@mui/icons-material';
+import { flexbox } from '@mui/system';
 import {useContext} from 'react';
 import { EditorContext, StyleContext } from '../Context';
 import { CSS_COLOR_NAMES } from '../data/colorPallet';
@@ -25,7 +27,7 @@ function isFontValid(param) {
         const value = parameter.slice(semic+1).trim();
         if (name == "size") return { fontSize: value + "px"};
     }
-    console.log(token, parameter);
+    
     switch (param) {
         case "headline":
             return {
@@ -116,8 +118,8 @@ export const useParser=()=>{
         }
     }
 
-    function addStyle() {
-        const content = editorContent.trim();
+    function addStyleToText(content) {
+        console.log("text");
         var indicesOfDot = [];
         for(var i = 0; i < content.length; i++) {
             const paramIndexes = indexesOf('(', content);
@@ -216,6 +218,37 @@ export const useParser=()=>{
                 return;
             } 
         }
+    }
+
+    function addStyleToView(content) {
+        switch (content) {
+            case "VStack": setCustomStyle((prev) => ({
+                ...prev,
+                display: "flex",
+                flexDirection: "column"
+            }));
+            break;
+            case "HStack": setCustomStyle((prev) => ({
+                ...prev,
+                display: "flex",
+                flexDirection: "row"
+            }));
+            break;
+            case "ZStack": 
+            setCustomStyle((prev) => ({
+                ...prev,
+                display: "flex",
+                flexDirection: "row"
+            }));
+            return {position: "absolute"};
+            default: return;
+        }
+    }
+
+
+    function addStyle(level) {
+        const content = editorContent.trim();
+        level < 9 ? addStyleToText(content) : addStyleToView(content);
     }
 
     return {addStyle}

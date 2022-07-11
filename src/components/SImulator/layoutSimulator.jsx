@@ -6,11 +6,11 @@ import {ReactComponent as CanvasSVG} from '../../assets/simulator.svg'
 import { useParser } from '../../utils/useParser';
 import { addCustomStyle } from '../../utils/addCustomStyle';
 
-export const GameSimulator = ({label, level}) => {
+export const LayoutSimulator = ({level}) => {
     const { editorContent } = useContext(EditorContext);
     const { customStyle, setCustomStyle } = useContext(StyleContext);
     const {addStyle} = useParser();
-    
+
     useEffect(() => {
         if (editorContent == "") setCustomStyle( addCustomStyle(level)); else addStyle(level);
     }, [editorContent]);
@@ -21,7 +21,10 @@ export const GameSimulator = ({label, level}) => {
 
     return (
         <div className="game-simulator">
-            <div id='text' className='text' style={customStyle}>{label}</div>
+            <div id='stack' style={customStyle}>
+                <div className='text'>first</div>
+                <div className='text'>second</div>
+            </div>
             <CanvasSVG id='simulator-svg'/>
         </div>
     );

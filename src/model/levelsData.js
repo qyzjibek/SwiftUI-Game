@@ -103,4 +103,8 @@ export const levelsData = [
     description: <Description8/>,
     isValidAnswer: isValidTextCase
   },
+  {
+    description: <Description8/>,
+    isValidAnswer: isValidTextCase
+  },
 ]

@@ -6,7 +6,7 @@ import { Nav } from 'react-bootstrap';
 export const NavBar = () => {
 
   return (
-    <Navbar bg="light" expand="lg" className="navbar navbar-dark bg-dark">
+    <Navbar bg="light" expand="lg" className="navbar navbar-dark bg-dark" sticky="top"  >
         <Container fluid >
           <Navbar.Brand  mb-0 h1 >Getting started with SwiftUI</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
