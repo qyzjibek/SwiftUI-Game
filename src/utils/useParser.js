@@ -1,5 +1,3 @@
-import { Block, ViewColumn } from '@mui/icons-material';
-import { flexbox } from '@mui/system';
 import {useContext} from 'react';
 import { EditorContext, StyleContext } from '../Context';
 import { CSS_COLOR_NAMES } from '../data/colorPallet';
@@ -102,7 +100,8 @@ export const useParser=()=>{
 
     function makeStyle(functionCall, begin, end) {
         const parameters = functionCall.slice(begin+1, end).split(',');
-        if (parameters.length > 1) {
+
+        if (parameters.length > 0) {
             let style = {};
             for (const parameter of parameters) {
                 const semicolon = parameter.indexOf(':');
@@ -110,7 +109,12 @@ export const useParser=()=>{
                 const value = parameter.slice(semicolon+1, end).trim();
                 if (name == "alignment" && value.startsWith('.')) {
                     style["textAlign"] = isValidAlignment(value);
-                } else {
+                    style["alignItems"] = isValidAlignment(value);
+                } else if (name == "spacing") {
+                    console.log("bla");
+                    style["gap"] = value + "px";
+                }
+                else {
                     style[name] = value + "px";
                 }
             }
@@ -221,26 +225,33 @@ export const useParser=()=>{
     }
 
     function addStyleToView(content) {
-        switch (content) {
+        const paramBeginIndex = content.indexOf('(');
+        const paramEndIndex = content.indexOf(')'); 
+
+        const functionCall = paramEndIndex != -1 && paramBeginIndex != -1 ? content.slice(0, paramBeginIndex) : content;
+
+        switch (functionCall) {
             case "VStack": setCustomStyle((prev) => ({
                 ...prev,
+                ...makeStyle(content, paramBeginIndex, paramEndIndex),
                 display: "flex",
                 flexDirection: "column"
             }));
             break;
             case "HStack": setCustomStyle((prev) => ({
                 ...prev,
+                ...makeStyle(content, paramBeginIndex, paramEndIndex),
                 display: "flex",
                 flexDirection: "row"
             }));
             break;
             case "ZStack": 
-            setCustomStyle((prev) => ({
-                ...prev,
-                display: "flex",
-                flexDirection: "row"
-            }));
-            return {position: "absolute"};
+                setCustomStyle((prev) => ({
+                    ...prev,
+                    display: "flex",
+                    flexDirection: "row"
+                }));
+                return {position: "absolute"};
             default: return;
         }
     }
@@ -248,7 +259,7 @@ export const useParser=()=>{
 
     function addStyle(level) {
         const content = editorContent.trim();
-        level < 9 ? addStyleToText(content) : addStyleToView(content);
+        return level < 9 ? addStyleToText(content) : addStyleToView(content);
     }
 
     return {addStyle}
