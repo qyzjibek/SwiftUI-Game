@@ -9,6 +9,8 @@ import { Description8 } from "../components/Description/levelDescriptions/desc8"
 import { Description9 } from "../components/Description/levelDescriptions/desc9";
 
 const isValidBackgroundColor = (style) => {
+    if (!style) return;
+
     if (style.hasOwnProperty('backgroundColor')) {
       return (!style.backgroundColor) ? false : true;
     }
@@ -17,6 +19,8 @@ const isValidBackgroundColor = (style) => {
 }
   
 const isValidFont = (style) => {
+  if (!style) return;
+
   if (style.hasOwnProperty('fontWeight') || style.hasOwnProperty('fontStyle')) {
       return (style.fontWeight === "bold" && style.fontStyle === "italic") ? true : false;
   }
@@ -25,6 +29,8 @@ const isValidFont = (style) => {
 }
 
 const isValidColor = (style) => {
+  if (!style) return;
+
   if (style.hasOwnProperty('color')) {
       return (!style.color) ? true : false;
     }
@@ -33,6 +39,8 @@ const isValidColor = (style) => {
 }
 
 const isValidOpacity = (style) => {
+  if (!style) return;
+
   if (style.hasOwnProperty('opacity')) {
       return (Number(style.opacity) <= 1.0 && Number(style.opacity) >= 0.0) ? true : false;
   }
@@ -41,6 +49,8 @@ const isValidOpacity = (style) => {
 }
 
 const isValidRadius = (style) => {
+  if (!style) return;
+
   if (style.hasOwnProperty('borderRadius')) {
       return (!style.borderRadius) ? false : true;
   }
@@ -49,6 +59,8 @@ const isValidRadius = (style) => {
 }
 
 const isValidFrame = (style) => {
+  if (!style) return;
+
   if (style.hasOwnProperty('width') || style.hasOwnProperty('height') || style.hasOwnProperty('alignment')) {
     return (!style.width && !style.height && !style.alignment) ? false : true;
   }
@@ -57,8 +69,21 @@ const isValidFrame = (style) => {
 }
  
 const isValidTextCase = (style) => {
+  if (!style) return;
+
   if (style.hasOwnProperty('textTransform') || style.hasOwnProperty('textDecoration')) {
     return (!style.textTransform && !style.textTransform) ? false : true;
+  }
+
+  return false
+}
+
+const isValidStack = (style) => {
+  if (!style) return;
+
+  if (style.hasOwnProperty('display') && style.hasOwnProperty('flexDirection')) {
+    console.log("here");
+    return (!style.display && !style.flexDirection) ? false : true;
   }
 
   return false
@@ -106,6 +131,6 @@ export const levelsData = [
   },
   {
     description: <Description9/>,
-    isValidAnswer: isValidTextCase
+    isValidAnswer: isValidStack
   },
 ]
