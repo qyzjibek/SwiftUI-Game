@@ -16,6 +16,11 @@ export const addCustomStyle = (level) => {
             return {
                 display: "none"
             }
+        // case 10: 
+        //     return {
+        //         width: "250px",
+        //         justifyC
+        //     }
         default: return;
     }
 }

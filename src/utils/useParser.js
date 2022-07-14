@@ -233,9 +233,20 @@ export const useParser=()=>{
         const paramEndIndex = content.indexOf(')'); 
 
         const functionCall = paramEndIndex != -1 && paramBeginIndex != -1 ? content.slice(0, paramBeginIndex) : content;
-        const declaration = content.slic(0, paramEndIndex);
+        const declaration = content.slice(0, paramEndIndex);
 
-        if(paramBeginIndex)
+        if(paramBeginIndex + 1 === paramEndIndex) {
+            switch (functionCall) {
+                case "Spacer": 
+                setCustomStyle((prev) => ({
+                    ...prev,
+                    width: "258px",
+                    justifyContent: "flex-start"
+                }));
+                break;
+                default: return;
+            }
+        }
 
         switch (functionCall) {
             case "VStack": setCustomStyle((prev) => ({

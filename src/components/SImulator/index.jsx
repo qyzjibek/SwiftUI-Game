@@ -17,16 +17,11 @@ export const GameSimulator = ({label, level}) => {
 
     useEffect(() => {
         setCustomStyle(addCustomStyle(level));
-    }, []);
-
-    const onHoverHandler = (e) => { 
-        console.log("hover");
-        e.target.style.background = "red";
-    }
+    }, []); 
 
     return (
         <div className="game-simulator">
-            <div id='text' className='text' style={customStyle} onMouseOver={onHoverHandler}>{label}</div>
+            <div id='text' className='text' style={customStyle} >{label}</div>
             <CanvasSVG id='simulator-svg'/>
         </div>
     );

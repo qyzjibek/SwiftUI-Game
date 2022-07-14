@@ -22,10 +22,18 @@
   text-align: center;
 }
 
+.text:hover {
+  border: 1px solid black;
+}
+
 #stack {
   /* width: 260px; */
-  /* display: flex; */
+  display: flex;
   gap: 8px;
   /* flex-direction: row; */
   /* display: none; */
+}
+
+#stack:hover {
+  border: 1px solid black;
 }
