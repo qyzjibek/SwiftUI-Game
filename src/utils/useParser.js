@@ -111,7 +111,6 @@ export const useParser=()=>{
                     style["textAlign"] = isValidAlignment(value);
                     style["alignItems"] = isValidAlignment(value);
                 } else if (name == "spacing") {
-                    console.log("bla");
                     style["gap"] = value + "px";
                 }
                 else {
@@ -123,7 +122,6 @@ export const useParser=()=>{
     }
 
     function addStyleToText(content) {
-        console.log("text");
         var indicesOfDot = [];
         for(var i = 0; i < content.length; i++) {
             const paramIndexes = indexesOf('(', content);
@@ -138,8 +136,8 @@ export const useParser=()=>{
             const begin =  functionCall.indexOf('(');
             const end = functionCall.indexOf(')');
 
-            if (begin + 1 == end) {
-                const token = functionCall.slice(0, -2).trim();
+            if (begin + 1 === end) {
+                const token = functionCall.slice(0, begin).trim();
                 if (token == "italic") {
                     setCustomStyle((prev) => ({
                         ...prev,
@@ -159,6 +157,12 @@ export const useParser=()=>{
                     setCustomStyle((prev) => ({
                         ...prev,
                         textDecoration: "underline"
+                    }));
+                } else if (token== "padding") {
+                    console.log("here");
+                    setCustomStyle((prev) => ({
+                        ...prev,
+                        padding: "8px"
                     }));
                 }
             } else if (end > begin) {
@@ -229,6 +233,9 @@ export const useParser=()=>{
         const paramEndIndex = content.indexOf(')'); 
 
         const functionCall = paramEndIndex != -1 && paramBeginIndex != -1 ? content.slice(0, paramBeginIndex) : content;
+        const declaration = content.slic(0, paramEndIndex);
+
+        if(paramBeginIndex)
 
         switch (functionCall) {
             case "VStack": setCustomStyle((prev) => ({

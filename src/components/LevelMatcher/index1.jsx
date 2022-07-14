@@ -4,6 +4,7 @@ import { useState, useContext  } from 'react';
 import { LayoutSimulator } from '../SImulator/layoutSimulator';
 import { GameDescription } from '../Description/description';
 import { LayoutEditor } from '../Editor/layoutEditor';
+import { ViewEditor } from '../Editor/viewEditor';
 
 import { levelsData } from '../../model/levelsData';
 
@@ -37,7 +38,8 @@ export const LevelMatcherLayout = ({level, setLevel}) => {
         <StyleContext.Provider value={{customStyle, setCustomStyle}}></StyleContext.Provider>
         <LayoutSimulator level={level}/>
         <GameDescription level={level}/>
-        <LayoutEditor level={level} text={editorContent} isValidAnswer={data.isValidAnswer}/>
+        {level < 10 && <LayoutEditor level={level} text={editorContent} isValidAnswer={data.isValidAnswer}/>}
+        {level > 9  && <ViewEditor level={level} text={editorContent} isValidAnswer={data.isValidAnswer}/>}
       </EditorContext.Provider>
     );
   };

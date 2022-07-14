@@ -12,6 +12,10 @@ export const addCustomStyle = (level) => {
             return {
                 backgroundColor: "rgb(255, 214, 10)"
             }
+        case 9: 
+            return {
+                display: "none"
+            }
         default: return;
     }
 }

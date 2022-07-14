@@ -31,3 +31,8 @@ textarea {
     font-family: SF Mono,SFMono-Regular,ui-monospace,Menlo,monospace;
     font-size: 13px;
 }
+
+.btn-group {
+    display: flex;
+    margin-left: 500px;
+}
