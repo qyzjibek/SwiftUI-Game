@@ -12,6 +12,8 @@ export const LevelMatcherLayout = ({level, setLevel}) => {
   const data = levelsData[level-1];
 
   const [editorContent, setEditorContent] = useState("");
+
+  const {mode, setMode} = useState(1);
   
   const {customStyle, setCustomStyle } = useContext(StyleContext);
 
@@ -34,7 +36,7 @@ export const LevelMatcherLayout = ({level, setLevel}) => {
   }
 
     return (
-      <EditorContext.Provider value={{ handleContentChange, editorContent, handleLevelIncr, handleLevelDecr }}>
+      <EditorContext.Provider value={{ handleContentChange, editorContent, handleLevelIncr, handleLevelDecr, mode, setMode }}>
         <StyleContext.Provider value={{customStyle, setCustomStyle}}></StyleContext.Provider>
         <LayoutSimulator level={level}/>
         <GameDescription level={level}/>

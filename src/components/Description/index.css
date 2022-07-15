@@ -24,9 +24,10 @@ p {
 
 pre {
     color: rgb(173, 61, 164);
-    border-radius: 5px;
     background-color: #fbfbfd;
     font-size: 13px;
+    padding: 0;
+    margin: 0;
 }
 
 .desc-code {
