@@ -175,7 +175,6 @@ export const useParser=()=>{
                         fontStyle: 'italic'
                     }));
                 } else if (token== "bold") {
-                    console.log("here");
                     setCustomStyle((prev) => ({
                         ...prev,
                         fontWeight: 'bold'
@@ -191,7 +190,6 @@ export const useParser=()=>{
                         textDecoration: "underline"
                     }));
                 } else if (token== "padding") {
-                    console.log("padding");
                     setCustomStyle((prev) => ({
                         ...prev,
                         padding: "8px"
@@ -310,20 +308,23 @@ export const useParser=()=>{
             default: return;
         }
     }
+    function removeSpacesAndNewlines(str){
+        return str.replace(/\s/g, "").replace(/(\r\n|\n|\r)/gm, "").split('()');
+    }
 
     function declareFunction () {
         const content = editorContent.trim();
-
-        const paramBeginIndex = content.indexOf('(');
-        const paramEndIndex = content.indexOf(')'); 
-
-        const functionCall = paramEndIndex !== -1 && paramBeginIndex !== -1 ? content.slice(0, paramBeginIndex) : "";
-
-        switch (functionCall) {
-            case "Spacer": return <div style={{width: "100%"}}></div>;
-            case "Divider": return <hr className='divider' />
-            default: return;
+        let tokens = removeSpacesAndNewlines(content);
+        let dict = {
+            'Spacer': <div style={{width: "100%"}}></div>,
+            'Divider': <hr className='divider' />,
         }
+        return (
+            <>
+            {
+                tokens.map((item) => dict[item])
+            }</>
+        )
     }
 
     function addStyle(level) {

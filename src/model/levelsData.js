@@ -41,6 +41,16 @@ const isValidColor = (style) => {
   return false
 }
 
+const isValidPadding = (style) => {
+  if (!style) return;
+
+  if (style.hasOwnProperty('padding')) {
+      return (!style.padding) ? true : false;
+    }
+  
+  return false
+}
+
 const isValidOpacity = (style) => {
   if (!style) return;
 
@@ -134,7 +144,7 @@ export const levelsData = [
   {
     textLabel: "Give me padding",
     description: <Description12/>,
-    isValidAnswer: isValidStack
+    isValidAnswer: isValidPadding
   },
   {
     description: <Description9/>,

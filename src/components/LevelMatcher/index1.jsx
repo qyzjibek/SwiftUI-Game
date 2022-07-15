@@ -47,8 +47,8 @@ export const LevelMatcherLayout = ({level, setLevel}) => {
         <StyleContext.Provider value={{customStyle, setCustomStyle}}></StyleContext.Provider>
         <LayoutSimulator level={level} mode={mode} />
         <GameDescription level={level}/>
-        {level < 10 && <LayoutEditor level={level} text={editorContent} isValidAnswer={data.isValidAnswer}/>}
-        {level > 9 &&  level < 13 && <ViewEditor level={level} text={editorContent} isValidAnswer={data.isValidAnswer}/>}
+        {level === 10 && <LayoutEditor level={level} text={editorContent} isValidAnswer={data.isValidAnswer}/>}
+        {level > 10 &&  level < 13 && <ViewEditor level={level} text={editorContent} isValidAnswer={data.isValidAnswer}/>}
       </EditorContext.Provider>
     );
   };
