@@ -7,17 +7,22 @@ import { LayoutEditor } from '../Editor/layoutEditor';
 import { ViewEditor } from '../Editor/viewEditor';
 
 import { levelsData } from '../../model/levelsData';
+import { useEffect } from 'react';
 
 export const LevelMatcherLayout = ({level, setLevel}) => {
   const data = levelsData[level-1];
 
   const [editorContent, setEditorContent] = useState("");
 
-  const {mode, setMode} = useState(1);
+  const [mode, setMode] = useState(1);
   
   const {customStyle, setCustomStyle } = useContext(StyleContext);
 
   const {minLevel, maxLevel} = useContext(LevelContext);
+
+  useEffect(() => {
+    setEditorContent("");
+  }, [mode]);
 
   const handleContentChange = (event) => {
     setEditorContent(event.target.value);
@@ -38,7 +43,7 @@ export const LevelMatcherLayout = ({level, setLevel}) => {
     return (
       <EditorContext.Provider value={{ handleContentChange, editorContent, handleLevelIncr, handleLevelDecr, mode, setMode }}>
         <StyleContext.Provider value={{customStyle, setCustomStyle}}></StyleContext.Provider>
-        <LayoutSimulator level={level}/>
+        <LayoutSimulator level={level} mode={mode} />
         <GameDescription level={level}/>
         {level < 10 && <LayoutEditor level={level} text={editorContent} isValidAnswer={data.isValidAnswer}/>}
         {level > 9  && <ViewEditor level={level} text={editorContent} isValidAnswer={data.isValidAnswer}/>}

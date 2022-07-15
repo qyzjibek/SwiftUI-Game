@@ -32,8 +32,15 @@
   gap: 8px;
   /* flex-direction: row; */
   /* display: none; */
+  align-items: center;
 }
 
 #stack:hover {
   border: 1px solid rgb(10, 132, 255);
+}
+
+.divider {
+  color: rgb(142, 142, 147);
+  height: 540px;
+  border: 0.3px solid gray;
 }

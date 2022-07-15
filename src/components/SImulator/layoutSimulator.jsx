@@ -7,9 +7,9 @@ import { useParser } from '../../utils/useParser';
 import { addCustomStyle } from '../../utils/addCustomStyle';
 
 export const LayoutSimulator = ({level}) => {
-    const { editorContent } = useContext(EditorContext);
+    const { editorContent, mode } = useContext(EditorContext);
     const { customStyle, setCustomStyle } = useContext(StyleContext);
-    const {addStyle} = useParser();
+    const {addStyle, declareFunction} = useParser();
     const [divSTyle, setDivStyle] = useState({});
 
     useEffect(() => {
@@ -24,11 +24,15 @@ export const LayoutSimulator = ({level}) => {
     return (
         <div className="game-simulator">
             <div id='stack' style={customStyle}>
-                <div style={{width: "100%"}}></div>
+            {/* <hr className='divider' /> */}
+                {mode === 1 && declareFunction()}
+                {/* <div style={{width: "100%"}}></div> */}
                 <div className='text' style={divSTyle}>first</div>
-                <div style={{width: "100%"}}></div>
+                {mode === 2 && declareFunction()}
+                {/* <div style={{width: "100%"}}></div> */}
                 <div className='text'>second</div>
-                <div style={{width: "100%"}}></div>
+                {/* <div style={{width: "100%"}}></div> */}
+                {mode === 3 && declareFunction()}
             </div>
             <CanvasSVG id='simulator-svg'/>
         </div>

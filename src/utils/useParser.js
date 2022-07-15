@@ -233,20 +233,19 @@ export const useParser=()=>{
         const paramEndIndex = content.indexOf(')'); 
 
         const functionCall = paramEndIndex != -1 && paramBeginIndex != -1 ? content.slice(0, paramBeginIndex) : content;
-        const declaration = content.slice(0, paramEndIndex);
 
-        if(paramBeginIndex + 1 === paramEndIndex) {
-            switch (functionCall) {
-                case "Spacer": 
-                setCustomStyle((prev) => ({
-                    ...prev,
-                    width: "258px",
-                    justifyContent: "flex-start"
-                }));
-                break;
-                default: return;
-            }
-        }
+        // if(paramBeginIndex + 1 === paramEndIndex) {
+        //     switch (functionCall) {
+        //         case "Spacer": 
+        //         setCustomStyle((prev) => ({
+        //             ...prev,
+        //             width: "258px",
+        //             justifyContent: "flex-start"
+        //         }));
+        //         break;
+        //         default: return;
+        //     }
+        // }
 
         switch (functionCall) {
             case "VStack": setCustomStyle((prev) => ({
@@ -274,12 +273,26 @@ export const useParser=()=>{
         }
     }
 
+    function declareFunction () {
+        const content = editorContent.trim();
+
+        const paramBeginIndex = content.indexOf('(');
+        const paramEndIndex = content.indexOf(')'); 
+
+        const functionCall = paramEndIndex !== -1 && paramBeginIndex !== -1 ? content.slice(0, paramBeginIndex) : "";
+
+        switch (functionCall) {
+            case "Spacer": return <div style={{width: "100%"}}></div>;
+            case "Divider": return <hr className='divider' />
+            default: return;
+        }
+    }
 
     function addStyle(level) {
         const content = editorContent.trim();
         return level < 9 ? addStyleToText(content) : addStyleToView(content);
     }
 
-    return {addStyle}
+    return {addStyle, declareFunction}
     
 }

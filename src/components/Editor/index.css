@@ -23,6 +23,7 @@
 }
 
 textarea {
+    margin-top: 8px;
     margin-left: 96px;
     resize: none;
     background: #f1f7ff;

@@ -8,7 +8,7 @@ import { LevelMatcherLayout } from './components/LevelMatcher/index1';
 import { addCustomStyle } from './utils/addCustomStyle';
 
 function App() {
-  const maxLevel = 10, minLevel = 1;
+  const maxLevel = 11, minLevel = 1;
   const [level, setLevel] = useState(Number(localStorage.getItem('level')) || 1);
   const [customStyle, setCustomStyle] = useState({});
 

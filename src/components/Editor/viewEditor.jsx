@@ -7,6 +7,7 @@ import {ReactComponent as ArrowLeftSVG} from '../../assets/arrow-left.svg'
 
 export const ViewEditor = ({text, isValidAnswer, level}) => {
     const {handleContentChange, mode, setMode} = useContext(EditorContext);
+    console.log(mode);
 
     const onIncrHandler = () => {
         console.log(mode);
@@ -34,14 +35,20 @@ export const ViewEditor = ({text, isValidAnswer, level}) => {
 `}
                 </pre>
                 {mode === 1 && <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange} style={{height: "24px", marginLeft: "125px", width: "70%"}}></textarea>}
-                <pre style={{lineHeight: "10px"}}>
+                <pre>
 {`
                 Text("first")
 `}
                 </pre>
+                {mode === 2 && <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange} style={{height: "24px", marginLeft: "125px", width: "70%"}}></textarea>}
                 <pre>
 {`
                 Text("second")
+`}
+                </pre>
+                {mode === 3 && <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={handleContentChange} style={{height: "24px", marginLeft: "125px", width: "70%"}}></textarea>}
+                <pre>
+{`
             }
         }
     }
