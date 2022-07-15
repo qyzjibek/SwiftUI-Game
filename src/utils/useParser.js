@@ -98,6 +98,37 @@ export const useParser=()=>{
         }
     }
 
+    function getPaddingStyle(direction) {
+        switch (direction) {
+            case "top": return "paddingTop";
+            case "bottom": return "paddingBottom";
+            case "trailing": return "paddingRight";
+            case "leading": return "paddingLeft";
+            default: return;
+        }
+    }
+
+    function isPaddingValid(functionCall, begin, end) {
+        const parameters = functionCall.slice(begin + 1, end).split(',');
+
+        if (parameters.length > 1) {
+            let value, prop;
+            for (const param of parameters) {
+                if(param.trim().startsWith('.')) prop = getPaddingStyle(param.slice(1));
+                else value = param.trim() + "px";
+            }
+
+            return {[prop]: value};
+        } else {
+            const value = parameters[0].trim();
+            const dir = getPaddingStyle(value.slice(1));
+
+            if(value.startsWith('.')) return {[dir]: "8px"};
+            else return {padding: value + "px"};
+        }
+    }
+    
+
     function makeStyle(functionCall, begin, end) {
         const parameters = functionCall.slice(begin+1, end).split(',');
 
@@ -144,6 +175,7 @@ export const useParser=()=>{
                         fontStyle: 'italic'
                     }));
                 } else if (token== "bold") {
+                    console.log("here");
                     setCustomStyle((prev) => ({
                         ...prev,
                         fontWeight: 'bold'
@@ -159,7 +191,7 @@ export const useParser=()=>{
                         textDecoration: "underline"
                     }));
                 } else if (token== "padding") {
-                    console.log("here");
+                    console.log("padding");
                     setCustomStyle((prev) => ({
                         ...prev,
                         padding: "8px"
@@ -217,6 +249,12 @@ export const useParser=()=>{
                         setCustomStyle((prev) => ({
                             ...prev,
                             ...isFontValid(param.trim())
+                        }));
+                        break;
+                    case "padding":
+                        setCustomStyle((prev) => ({
+                            ...prev,
+                           ...isPaddingValid(functionCall, begin, end)
                         }));
                         break;
                     default:
@@ -290,7 +328,7 @@ export const useParser=()=>{
 
     function addStyle(level) {
         const content = editorContent.trim();
-        return level < 9 ? addStyleToText(content) : addStyleToView(content);
+        return level < 10 ? addStyleToText(content) : addStyleToView(content);
     }
 
     return {addStyle, declareFunction}

@@ -9,6 +9,7 @@ import { Description8 } from "../components/Description/levelDescriptions/desc8"
 import { Description9 } from "../components/Description/levelDescriptions/desc9";
 import { Description10 } from "../components/Description/levelDescriptions/desc10";
 import { Description11 } from "../components/Description/levelDescriptions/desc11";
+import { Description12 } from "../components/Description/levelDescriptions/desc12";
 
 const isValidBackgroundColor = (style) => {
     if (!style) return;
@@ -84,7 +85,6 @@ const isValidStack = (style) => {
   if (!style) return;
 
   if (style.hasOwnProperty('display') && style.hasOwnProperty('flexDirection')) {
-    console.log("here");
     return (!style.display && !style.flexDirection) ? false : true;
   }
 
@@ -132,6 +132,11 @@ export const levelsData = [
     isValidAnswer: isValidTextCase
   },
   {
+    textLabel: "Give me padding",
+    description: <Description12/>,
+    isValidAnswer: isValidStack
+  },
+  {
     description: <Description9/>,
     isValidAnswer: isValidStack
   },
@@ -142,5 +147,5 @@ export const levelsData = [
   {
     description: <Description11/>,
     isValidAnswer: isValidStack
-  },
+  }
 ]

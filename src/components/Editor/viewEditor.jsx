@@ -7,10 +7,8 @@ import {ReactComponent as ArrowLeftSVG} from '../../assets/arrow-left.svg'
 
 export const ViewEditor = ({text, isValidAnswer, level}) => {
     const {handleContentChange, mode, setMode} = useContext(EditorContext);
-    console.log(mode);
 
     const onIncrHandler = () => {
-        console.log(mode);
         setMode((prev) => (prev < 3 ? prev + 1 : prev))
     }
 

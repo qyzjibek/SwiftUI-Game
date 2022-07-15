@@ -8,7 +8,7 @@ import { LevelMatcherLayout } from './components/LevelMatcher/index1';
 import { addCustomStyle } from './utils/addCustomStyle';
 
 function App() {
-  const maxLevel = 11, minLevel = 1;
+  const maxLevel = 12, minLevel = 1;
   const [level, setLevel] = useState(Number(localStorage.getItem('level')) || 1);
   const [customStyle, setCustomStyle] = useState({});
 
@@ -22,8 +22,8 @@ function App() {
       <NavBar /> 
       <LevelContext.Provider value={{maxLevel, minLevel}}>
         <StyleContext.Provider value={{customStyle, setCustomStyle}}>
-          {level < 9 && <LevelMatcherStyle level={level} setLevel={setLevel}/>}
-          {level > 8 && <LevelMatcherLayout level={level} setLevel={setLevel}/>}
+          {level < 10 && <LevelMatcherStyle level={level} setLevel={setLevel}/>}
+          {level > 9 && <LevelMatcherLayout level={level} setLevel={setLevel}/>}
         </StyleContext.Provider>
       </LevelContext.Provider>
     </>

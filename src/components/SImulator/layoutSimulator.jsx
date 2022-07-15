@@ -24,14 +24,10 @@ export const LayoutSimulator = ({level}) => {
     return (
         <div className="game-simulator">
             <div id='stack' style={customStyle}>
-            {/* <hr className='divider' /> */}
                 {mode === 1 && declareFunction()}
-                {/* <div style={{width: "100%"}}></div> */}
                 <div className='text' style={divSTyle}>first</div>
                 {mode === 2 && declareFunction()}
-                {/* <div style={{width: "100%"}}></div> */}
                 <div className='text'>second</div>
-                {/* <div style={{width: "100%"}}></div> */}
                 {mode === 3 && declareFunction()}
             </div>
             <CanvasSVG id='simulator-svg'/>

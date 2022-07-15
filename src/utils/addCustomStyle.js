@@ -12,11 +12,11 @@ export const addCustomStyle = (level) => {
             return {
                 backgroundColor: "rgb(255, 214, 10)"
             }
-        case 9: 
+        case 10: 
             return {
                 display: "none"
             }
-        case 10: 
+        case 11: 
             return {
                 width: "258px",
                 justifyContent: "center"
