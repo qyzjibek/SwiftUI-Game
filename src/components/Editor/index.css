@@ -58,8 +58,18 @@ textarea {
     border-radius: 6px;
     margin-left: 96px;
     width: 80%;
-    min-height: 0;
+    /* min-height: 0; */
+    /* inset: 0px auto auto 0px; */
 }
+.murat {
+    height: 100px;
+    overflow-y: scroll;
+}
+.jibek{
+    height: unset;
+    overflow-y: unset;
+}
+
 .suggestion:hover {
     background-color: rgb(0, 113, 227);
     color: white;

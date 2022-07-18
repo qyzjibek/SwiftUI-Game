@@ -1,4 +1,4 @@
-export const options = [
+export const modifierSuggestions = [
     {
         initializer: "underline()",
         autocomplete: ".underline()",
@@ -44,4 +44,38 @@ export const options = [
         initializer: "padding(_ length: CGFloat)",
         autocomplete: ".padding(_ length: CGFloat)"
     },
+]
+
+export const stackSuggestions = [
+    {
+        initializer: "HStack",
+        autocomplete: "HStack"
+    },
+    {
+        initializer: "HStack(alignment:spacing:content:)",
+        autocomplete: "HStack(alignment: VerticalAlignment, spacing: CGFloat?)"
+    },
+    {
+        initializer: "VStack",
+        autocomplete: "VStack"
+    },
+    {
+        initializer: "VStack(alignment:spacing:content:)",
+        autocomplete: "VStack(alignment: VerticalAlignment, spacing: CGFloat?)"
+    },
+    {
+        initializer: "ZStack",
+        autocomplete: "ZStack"
+    },
+]
+
+export const viewSuggestions = [
+    {
+        initializer: "Spacer",
+        autocomplete: "Spacer()"
+    },
+    {
+        initializer: "Divider",
+        autocomplete: "Divider()"
+    }
 ]

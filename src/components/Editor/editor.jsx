@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { EditorContext } from "../../Context";
 import CustomizedDialogs from "../PopUp";
 import modifierIcon from '../../assets/modifier-icon.png'
-import { options } from "../../data/suggestions";
+import { modifierSuggestions as options } from "../../data/suggestions";
 
 export const Editor = ({text, label, isValidAnswer, level}) => {
     const [suggested, setSuggested] = useState(false);
@@ -14,21 +14,30 @@ export const Editor = ({text, label, isValidAnswer, level}) => {
 
     const handleTextAreaChange = (typedText) => {
         handleContentChange(typedText);
-        if (suggested) {setSuggested(false); return;}
+
+        if (suggested) {
+            setSuggested(false); return;
+        }
+
         const modifiers = typedText.replace(/\s/g, "").replace(/(\r\n|\n|\r)/gm, "").split('.');
+        console.log(modifiers);
         const last = modifiers[modifiers.length - 1];
         let matches = [];
+        
         if (text.length > 0) {
-            matches  = options.filter((option) => option.autocomplete.toLowerCase().includes(last.toLowerCase()));
+            matches = options.filter((option) => option.autocomplete.toLowerCase().includes(last.toLowerCase()));
             setSuggestions(matches);
             setSuggested(true);
         }
     }
 
     const onSuggestionHandler = (selectedSuggestion) => {
-        handleContentChange(selectedSuggestion.autocomplete);
+        handleContentChange( removeBeforeComplete(text) + selectedSuggestion.autocomplete);
         setSuggestions([]);
+        setSuggested(true);
     }
+
+    const removeBeforeComplete = t => t.substr(0, t.lastIndexOf("\."));
 
     const textModifier = () => {
         switch (level) {
@@ -52,18 +61,24 @@ export const Editor = ({text, label, isValidAnswer, level}) => {
 `}
                 </pre>
                 <div>
-                <textarea value={text} autocapitalize="none" spellcheck="false" placeholder="Type your answer here..." onChange={e => handleTextAreaChange(e.target.value)} style={{height: `${level < 3 ? "24px" : "48px"}`}} onBlur={() => {setTimeout(() => {setSuggestions([])}, 100)}}  onKeyPress= {(e) => {
-            if (e.key === 'Enter' && suggestions.length > 0) {
-                handleContentChange(suggestions[0].autocomplete);
-                setSuggestions([]);
-                setSuggested(true);
-            }
-    }}></textarea>
-                {suggestions.length > 0 && <div className="suggestion-wrapper">
+                <textarea value={text} 
+                autocapitalize="none" 
+                spellcheck="false" 
+                placeholder="Type your answer here..." 
+                onChange={e => handleTextAreaChange(e.target.value)} 
+                style={{height: `${level < 3 ? "70px" : "48px"}`}}  
+                onKeyPress= {(e) => {
+                    if (e.key === 'Enter' && suggestions.length > 0) {
+                        onSuggestionHandler(suggestions[0]);
+                    }
+                }}>
+                </textarea>
+                {suggestions.length > 0 && <div className={`suggestion-wrapper ${suggestions.length > 4 ? "murat" : "jibek"}`}>
                     {suggestions && suggestions.map((suggestion, i) => (
                         <div key={i} className="suggestion" onClick={() => onSuggestionHandler(suggestion)}><img src={modifierIcon} alt="M" className="icon-img"/>{suggestion.initializer}</div>
                     ))}
-                </div>}
+                </div>
+                }
                 </div>
                 <pre>
 {`
