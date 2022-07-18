@@ -16,8 +16,8 @@ export const LevelMatcherStyle = ({level, setLevel}) => {
 
   const {minLevel, maxLevel} = useContext(LevelContext);
 
-  const handleContentChange = (event) => {
-    setEditorContent(event.target.value);
+  const handleContentChange = (value) => {
+    setEditorContent(value);
   }
 
   const handleLevelIncr = () => {

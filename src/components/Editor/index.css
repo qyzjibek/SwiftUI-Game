@@ -37,3 +37,38 @@ textarea {
     display: flex;
     margin-left: 500px;
 }
+
+.suggestion {
+    background-color: rgb(237, 233, 237);
+    cursor: pointer;
+    width: 100%;
+    padding: 0px 4px;
+    /* font-family: -apple-system, BlinkMacSystemFont; */
+    font-family: 'SF Mono', SFMono-Regular, ui-monospace,
+    'DejaVu Sans Mono', Menlo, Consolas, monospace;
+    border-radius: 3px;
+}
+
+.suggestion-wrapper {
+    background-color: rgb(237, 233, 237);
+    width: 100%;
+    position: absolute;
+    overflow: scroll;
+    padding: 4px;
+    border-radius: 6px;
+    margin-left: 96px;
+    width: 80%;
+    min-height: 0;
+}
+.suggestion:hover {
+    background-color: rgb(0, 113, 227);
+    color: white;
+}
+
+.icon-img {
+    width: 24px;
+    border-radius: 6px;
+    padding: 2px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+}

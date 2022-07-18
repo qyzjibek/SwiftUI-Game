@@ -6,6 +6,7 @@ import {ReactComponent as ArrowRightSVG} from  '../../assets/arrow-right.svg'
 import {ReactComponent as ArrowLeftSVG} from '../../assets/arrow-left.svg' 
 
 export const ViewEditor = ({text, isValidAnswer, level}) => {
+
     const {handleContentChange, mode, setMode} = useContext(EditorContext);
 
     const onIncrHandler = () => {

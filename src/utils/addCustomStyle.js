@@ -16,7 +16,7 @@ export const addCustomStyle = (level) => {
             return {
                 display: "none"
             }
-        case 11: 
+        case 11, 12: 
             return {
                 width: "258px",
                 justifyContent: "center"
