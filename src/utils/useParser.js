@@ -270,19 +270,6 @@ export const useParser=()=>{
 
         const functionCall = paramEndIndex != -1 && paramBeginIndex != -1 ? content.slice(0, paramBeginIndex) : content;
 
-        // if(paramBeginIndex + 1 === paramEndIndex) {
-        //     switch (functionCall) {
-        //         case "Spacer": 
-        //         setCustomStyle((prev) => ({
-        //             ...prev,
-        //             width: "258px",
-        //             justifyContent: "flex-start"
-        //         }));
-        //         break;
-        //         default: return;
-        //     }
-        // }
-
         switch (functionCall) {
             case "VStack": setCustomStyle((prev) => ({
                 ...prev,
@@ -319,11 +306,13 @@ export const useParser=()=>{
             'Spacer': <div style={{width: "100%"}}></div>,
             'Divider': <hr className='divider' />,
         }
+
         return (
             <>
-            {
-                tokens.map((item) => dict[item])
-            }</>
+                {
+                    tokens.map((item) => dict[item])
+                }
+            </>
         )
     }
 

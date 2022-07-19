@@ -18,6 +18,7 @@ export const LayoutSimulator = ({level}) => {
     }, [editorContent]);
 
     useEffect(() => {
+        console.log("adding custom style");
         setCustomStyle(addCustomStyle(level));
     }, []);
 

@@ -2,8 +2,9 @@ import "./index.css"
 import { useContext, useState } from "react";
 import { EditorContext } from "../../Context";
 import CustomizedDialogs from "../PopUp";
-import modifierIcon from '../../assets/modifier-icon.png'
+import modifierIcon from '../../assets/modifier-icon.png';
 import { stackSuggestions as options } from "../../data/suggestions";
+import structIcon from '../../assets/struct-icon.png';
 
 export const LayoutEditor = ({text, isValidAnswer, level}) => {
     const [suggested, setSuggested] = useState(false);
@@ -21,7 +22,7 @@ export const LayoutEditor = ({text, isValidAnswer, level}) => {
 
         let matches = [];
         if (text.length > 0) {
-            matches = options.filter((option) => typedText.autocomplete.toLowerCase().includes(typedText.toLowerCase()));
+            matches = options.filter((option) => option.autocomplete.toLowerCase().includes(typedText.toLowerCase()));
             setSuggestions(matches);
             setSuggested(true);
         }
@@ -61,7 +62,7 @@ export const LayoutEditor = ({text, isValidAnswer, level}) => {
                 </textarea>
                 {suggestions.length > 0 && <div className="suggestion-wrapper">
                     {suggestions && suggestions.map((suggestion, i) => (
-                        <div key={i} className="suggestion" onClick={() => onSuggestionHandler(suggestion)}><img src={modifierIcon} alt="M" className="icon-img"/>{suggestion.initializer}</div>
+                        <div key={i} className="suggestion" onClick={() => onSuggestionHandler(suggestion)}><img src={structIcon} alt="M" className="icon-img"/>{suggestion.initializer}</div>
                     ))}
                 </div>
                 }

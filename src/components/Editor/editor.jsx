@@ -41,12 +41,13 @@ export const Editor = ({text, label, isValidAnswer, level}) => {
 
     const textModifier = () => {
         switch (level) {
-            case 4: return ".background(.red)";
-            case 5: return ".background(.green)"; 
-            case 6: return ".background(.yellow)";
+            case 4: return ".background(.red) \n";
+            case 5: return ".background(.green) \n"; 
+            case 6: return ".background(.yellow) \n";
             default: return "";
         }
     }
+    
     return (
         <div className="editor-wrapper">
             <div className="editor-content">
@@ -66,14 +67,14 @@ export const Editor = ({text, label, isValidAnswer, level}) => {
                 spellcheck="false" 
                 placeholder="Type your answer here..." 
                 onChange={e => handleTextAreaChange(e.target.value)} 
-                style={{height: `${level < 3 ? "70px" : "48px"}`}}  
+                style={{height: `${level < 3 ? "24px" : "48px"}`}}  
                 onKeyPress= {(e) => {
                     if (e.key === 'Enter' && suggestions.length > 0) {
                         onSuggestionHandler(suggestions[0]);
                     }
                 }}>
                 </textarea>
-                {suggestions.length > 0 && <div className={`suggestion-wrapper ${suggestions.length > 4 ? "murat" : "jibek"}`}>
+                {suggestions.length > 0 && <div className={`suggestion-wrapper ${suggestions.length > 3 ? "murat" : "jibek"}`}>
                     {suggestions && suggestions.map((suggestion, i) => (
                         <div key={i} className="suggestion" onClick={() => onSuggestionHandler(suggestion)}><img src={modifierIcon} alt="M" className="icon-img"/>{suggestion.initializer}</div>
                     ))}

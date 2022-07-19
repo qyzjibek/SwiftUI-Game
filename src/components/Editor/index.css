@@ -43,7 +43,6 @@ textarea {
     cursor: pointer;
     width: 100%;
     padding: 0px 4px;
-    /* font-family: -apple-system, BlinkMacSystemFont; */
     font-family: 'SF Mono', SFMono-Regular, ui-monospace,
     'DejaVu Sans Mono', Menlo, Consolas, monospace;
     border-radius: 3px;
@@ -51,16 +50,24 @@ textarea {
 
 .suggestion-wrapper {
     background-color: rgb(237, 233, 237);
-    width: 100%;
     position: absolute;
     overflow: scroll;
     padding: 4px;
     border-radius: 6px;
     margin-left: 96px;
     width: 80%;
-    /* min-height: 0; */
-    /* inset: 0px auto auto 0px; */
 }
+
+.view-suggestion-wrapper {
+    background-color: rgb(237, 233, 237);
+    position: absolute;
+    overflow: scroll;
+    padding: 4px;
+    border-radius: 6px;
+    margin-left: 124px;
+    width: 70%;
+}
+
 .murat {
     height: 100px;
     overflow-y: scroll;
@@ -79,6 +86,5 @@ textarea {
     width: 24px;
     border-radius: 6px;
     padding: 2px;
-    margin-bottom: 2px;
     margin-right: 2px;
 }

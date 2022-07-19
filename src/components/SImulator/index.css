@@ -27,11 +27,10 @@
 }
 
 #stack {
-  /* width: 260px; */
+  width: 258px;
   display: flex;
   gap: 8px;
-  /* flex-direction: row; */
-  /* display: none; */
+  justify-content: center;
   align-items: center;
 }
 

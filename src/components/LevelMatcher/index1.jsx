@@ -2,11 +2,9 @@ import { EditorContext, StyleContext, LevelContext } from '../../Context';
 import { useState, useContext  } from 'react';
 
 import { LayoutSimulator } from '../SImulator/layoutSimulator';
-import { GameSimulator } from '../SImulator';
 import { GameDescription } from '../Description/description';
 import { LayoutEditor } from '../Editor/layoutEditor';
 import { ViewEditor } from '../Editor/viewEditor';
-import { Editor } from '../Editor/editor';
 
 import { levelsData } from '../../model/levelsData';
 import { useEffect } from 'react';
@@ -26,8 +24,8 @@ export const LevelMatcherLayout = ({level, setLevel}) => {
     setEditorContent("");
   }, [mode]);
 
-  const handleContentChange = (event) => {
-    setEditorContent(event.target.value);
+  const handleContentChange = (value) => {
+    setEditorContent(value);
   }
 
   const handleLevelIncr = () => {
