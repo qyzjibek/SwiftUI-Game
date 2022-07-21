@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import {ReactComponent as CanvasSVG} from '../../assets/simulator.svg';
 import ModifiersExampleIcon from '../../assets/modifier-example-icon.png';
 import StacksExampleIcon from '../../assets/stack-example-icon.png';
+import { GameSimulator } from "../SImulator";
+import { Editor } from "../Editor/editor";
 
 export const LandingPage = ({setlevel}) => {
     const onStartHandler = () => {
@@ -43,7 +45,10 @@ export const LandingPage = ({setlevel}) => {
 `}
                 </pre>
             </div>
-            <CanvasSVG className='landing-simulator-svg'/>
+            <div style={{position: "relative", display: "flex"}}>
+                <CanvasSVG className='landing-simulator-svg'/>
+                <div id='text' className='text custom-text'>Enjoy your journey</div>
+            </div>
             </div>
         </div>
         <div className="advantage-wrapper flex-column">

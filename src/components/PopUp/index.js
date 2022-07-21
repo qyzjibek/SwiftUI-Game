@@ -55,10 +55,9 @@ BootstrapDialogTitle.propTypes = {
 
 export default function CustomizedDialogs({isValidAnswer, level}) {
   const { handleLevelIncr } = useContext(EditorContext);
-  const { customStyle } = useContext(StyleContext);
+  const { customStyle, setShowConfetti } = useContext(StyleContext);
 
   const [open, setOpen] = React.useState(false);
-  const [showConfetti, setShowConfetti] = useState(false);
   // const { innerWidth: widthWindow, innerHeight: heightWindow } = window;
 
   const handleClickOpen = () => {
@@ -82,7 +81,6 @@ export default function CustomizedDialogs({isValidAnswer, level}) {
       <button onClick={handleClickOpen} className='check-btn'>
         Check answer
       </button>
-      {showConfetti ? <Confetti width={966} height={562} colors={["#b0b", "#8c28c2", "#e30000", "#38a39c", "#4ca9ff"]} numberOfPieces={100}/> : <></>}
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"

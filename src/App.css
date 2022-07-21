@@ -12,3 +12,7 @@ body {
 .swift-file-icon {
   fill: #ff7843;
 }
+
+.link {
+  text-decoration: none;
+}
