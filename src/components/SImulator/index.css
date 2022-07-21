@@ -43,3 +43,13 @@
   height: 540px;
   border: 0.3px solid gray;
 }
+
+.v-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  width: 258px;
+  height: 560px;
+}

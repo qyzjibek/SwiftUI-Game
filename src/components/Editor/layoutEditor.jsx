@@ -2,7 +2,6 @@ import "./index.css"
 import { useContext, useState } from "react";
 import { EditorContext } from "../../Context";
 import CustomizedDialogs from "../PopUp";
-import modifierIcon from '../../assets/modifier-icon.png';
 import { stackSuggestions as options } from "../../data/suggestions";
 import structIcon from '../../assets/struct-icon.png';
 

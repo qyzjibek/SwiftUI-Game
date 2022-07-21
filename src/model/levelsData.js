@@ -10,6 +10,7 @@ import { Description9 } from "../components/Description/levelDescriptions/desc9"
 import { Description10 } from "../components/Description/levelDescriptions/desc10";
 import { Description11 } from "../components/Description/levelDescriptions/desc11";
 import { Description12 } from "../components/Description/levelDescriptions/desc12";
+import { Description13 } from "../components/Description/levelDescriptions/desc13";
 
 const isValidBackgroundColor = (style) => {
     if (!style) return;
@@ -156,6 +157,10 @@ export const levelsData = [
   },
   {
     description: <Description11/>,
+    isValidAnswer: isValidStack
+  },
+  {
+    description: <Description13/>,
     isValidAnswer: isValidStack
   }
 ]

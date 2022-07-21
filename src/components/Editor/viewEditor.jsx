@@ -71,6 +71,7 @@ export const ViewEditor = ({text, isValidAnswer, level}) => {
                     spellcheck="false" 
                     placeholder="Type your answer here..." 
                     onChange={e => handleTextAreaChange(e.target.value)} 
+                    onBlur={() => {setTimeout(() => {setSuggestions([])}, 100)}}  
                     style={{height: "24px", marginLeft: "125px", width: "70%"}}  
                     onKeyPress= {(e) => {
                         if (e.key === 'Enter' && suggestions.length > 0) {

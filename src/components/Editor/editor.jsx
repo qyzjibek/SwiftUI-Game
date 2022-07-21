@@ -47,7 +47,7 @@ export const Editor = ({text, label, isValidAnswer, level}) => {
             default: return "";
         }
     }
-    
+
     return (
         <div className="editor-wrapper">
             <div className="editor-content">
@@ -68,6 +68,7 @@ export const Editor = ({text, label, isValidAnswer, level}) => {
                 placeholder="Type your answer here..." 
                 onChange={e => handleTextAreaChange(e.target.value)} 
                 style={{height: `${level < 3 ? "24px" : "48px"}`}}  
+                onBlur={() => {setTimeout(() => {setSuggestions([])}, 100)}}  
                 onKeyPress= {(e) => {
                     if (e.key === 'Enter' && suggestions.length > 0) {
                         onSuggestionHandler(suggestions[0]);

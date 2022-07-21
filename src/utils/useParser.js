@@ -1,3 +1,4 @@
+import { breadcrumbsClasses } from '@mui/material';
 import {useContext} from 'react';
 import { EditorContext, StyleContext } from '../Context';
 import { CSS_COLOR_NAMES } from '../data/colorPallet';
@@ -12,6 +13,27 @@ function isColorValid(color) {
 
 function isTextCaseValid(param) {
     return param === "uppercase" || param === "lowercase" ? param : "";
+}
+
+function isDigit(c) {
+    return c >= '0' && c <= '9';
+}
+
+function isAlpha(c) {
+    const ch = c.charCodeAt(0);
+    return (ch >= 65 && ch < 91) || (ch >= 97 && ch < 123);
+}
+
+function isExp(c) {
+    const dict = {
+        "=": "EQUAL",
+        "{": "LEFTBRACE",
+        "}": "RIGHTYBRACE",
+        "(": "LEFTPARAN",
+        ")": "RIGHTPARAN",
+    }
+
+    return dict[c];
 }
 
 function isFontValid(param) {
@@ -316,11 +338,73 @@ export const useParser=()=>{
         )
     }
 
+    function checkForToken(str, array, view) {
+        const leftParan = str.indexOf("(");
+        const rightParan = str.indexOf(")");
+        const token = str.slice(0, leftParan);
+        const params = str.slice(leftParan+1, rightParan).split(',');
+
+        if (leftParan != -1 && rightParan != -1 && token == "ForEach") {
+            if (params.length > 1 && params[0].trim() === "fruits" && params[1].trim() === "id: \\.self") {
+                console.log('here');
+                return view;
+            }
+        }
+    }
+
+    function createView(str) {
+        const leftParan = str.indexOf("(");
+        const rightParan = str.indexOf(")"); 
+        const param = str.slice(leftParan+1, rightParan).trim();
+        const token = str.slice(0, leftParan).trim();
+        const dict = {
+            "Text": <div>{param}</div>
+        }
+
+        return dict[token];
+
+    }
+
+    function codeGenerator (arr) {
+    // ForEach(fruits, id: \.self) { fruit in
+    //     Text(fruit).padding()
+    //  }
+        const content = editorContent.trim();
+        const parameters = content.split("{");
+
+        if (parameters.length > 1) {
+            const init = parameters[0];
+            const view = parameters[1];
+            return checkForToken(init, arr, createView(view));
+
+        }
+        // let token = "";
+        // let tokens = [];
+
+        // for (let i = 0; i < content.length; i++) {
+        //     const c = content[i];
+        //     if (isAlpha(c)) {
+        //         token += c;
+        //     } else if(isExp(c)) {
+        //         console.log(token);
+        //         tokens.push(token);
+        //         token = "";
+        //     }
+        //     // switch (c) {
+        //     //     case isAlpha(c) === true: console.log("neeeeecdeee"); break;
+        //     //     case isExp(c): console.log(isExp(c)); break;
+        //     //     default: continue;
+        //     // }
+        // }
+
+        // console.log(tokens);
+    }
+
     function addStyle(level) {
         const content = editorContent.trim();
         return level < 10 ? addStyleToText(content) : addStyleToView(content);
     }
 
-    return {addStyle, declareFunction}
+    return {addStyle, declareFunction, codeGenerator}
     
 }

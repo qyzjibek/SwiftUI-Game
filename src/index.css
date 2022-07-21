@@ -8,6 +8,6 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'SF Mono', SFMono-Regular, ui-monospace,
+  'DejaVu Sans Mono', Menlo, Consolas, monospace;
 }

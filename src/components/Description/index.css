@@ -28,10 +28,15 @@ pre {
     font-size: 13px;
     padding: 0;
     margin: 0;
+    font-family: 'SF Mono', SFMono-Regular, ui-monospace,
+    'DejaVu Sans Mono', Menlo, Consolas, monospace;
 }
 
 .desc-code {
     padding: 10px;
+    border-radius: 18px;
+    font-family: 'SF Mono', SFMono-Regular, ui-monospace,
+    'DejaVu Sans Mono', Menlo, Consolas, monospace;
 }
 
 .control-btn {

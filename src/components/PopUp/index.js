@@ -11,12 +11,16 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import {ReactComponent as BirdLogoSVG} from '../../assets/bird-logo.svg' 
+import Confetti from 'react-confetti';
+import { useState } from "react";
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
-    padding: theme.spacing(2),
+    padding: theme.spacing(2)
   },
   '& .MuiDialogActions-root': {
-    padding: theme.spacing(1),
+    padding: theme.spacing(1)
   },
 }));
 
@@ -54,10 +58,13 @@ export default function CustomizedDialogs({isValidAnswer, level}) {
   const { customStyle } = useContext(StyleContext);
 
   const [open, setOpen] = React.useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  // const { innerWidth: widthWindow, innerHeight: heightWindow } = window;
 
   const handleClickOpen = () => {
     // setOpen(true);
       if(isValidAnswer(customStyle)) {
+        setShowConfetti(true);
         setOpen(true);
       } else {
           alert("Oops, wrong answer. Try again!");
@@ -65,6 +72,7 @@ export default function CustomizedDialogs({isValidAnswer, level}) {
   };
 
   const handleClose = () => {
+    setShowConfetti(false);
     setOpen(false);
     handleLevelIncr();
   };
@@ -74,23 +82,24 @@ export default function CustomizedDialogs({isValidAnswer, level}) {
       <button onClick={handleClickOpen} className='check-btn'>
         Check answer
       </button>
+      {showConfetti ? <Confetti width={966} height={562} colors={["#b0b", "#8c28c2", "#e30000", "#38a39c", "#4ca9ff"]} numberOfPieces={100}/> : <></>}
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
+        style={{borderRadius: '27px'}}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} style={{width: "100%", fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif"}}>
-          Level {level} completed
+
         </BootstrapDialogTitle>
         <DialogContent className="dialog-content" style={{padding: "22px"}}>
-        <img 
-        style={{width:"70px",height:"64px",position:"initial"}}
-      src="https://miro.medium.com/max/1400/1*ePoF2imvQpvI6dvDG_OnAw.png"
-      alt="SwiftUI Logo"
-      /> 
-      <div className="score">
-      + 10
-      </div>
+          <BirdLogoSVG style={{position: "initial", height: "4rem"}} />
+          <h3 className="score" style={{lineHeight: "1.75rem", fontSize: "inherit", margin: "10px 0", color: "black"}}>
+            Level {level} completed!
+          </h3>
+          <div className="score">
+          + 10
+          </div>
         </DialogContent>
         <DialogActions>
         <button onClick={handleClose} className='check-btn' style={{marginLeft: '160px'}}>

@@ -44,6 +44,10 @@ export const modifierSuggestions = [
         initializer: "padding(_ length: CGFloat)",
         autocomplete: ".padding(_ length: CGFloat)"
     },
+    {
+        initializer: "opacity(_ opacity:)",
+        autocomplete: ".opacity()"
+    },
 ]
 
 export const stackSuggestions = [

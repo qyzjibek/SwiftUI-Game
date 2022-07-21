@@ -1,0 +1,140 @@
+.header-text {
+    font-weight: 700;
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    font-size: 3.5rem;
+}
+
+.subhead-text {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 300;
+}
+
+.play-btn {
+    background-color: rgb(0, 113, 227);
+    font-weight: 400;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 19px;
+    padding: 3px 14px;
+    border-radius: 18px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -.022em;
+}
+
+.header-section {
+    width: 100%;
+    width: 100vw;
+    padding: 36px;
+    text-align: center;
+    margin: 0 auto;
+    gap: 14px;
+    /* transform: translate(-50%, -50%); */
+}
+
+.landing-editor {
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
+    margin-top: 0.75rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    border-radius: 16px;
+    background: #fbfbfd;
+    padding: 10px 20px 30px 30px;
+    text-align: start;
+    width: 520px;
+    margin-top: 56px;
+}
+
+.landing-simulator-svg {
+    width: 320px;
+    height: 662px;
+    margin-top: 32px;
+    border-radius: 43px;
+}
+
+.example {
+    gap: 64px;
+    padding: 64px;
+}
+
+.advantage-wrapper {
+    background-color: rgb(29, 29, 31);
+    width: 100vw;
+    padding: 64px;
+    text-align: center;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 8px;
+    width: 100vw;
+    justify-content: center;
+}
+
+footer {
+    background-color: rgb(29, 29, 31);
+    width: 100vw;
+    padding: 16px 0;
+}
+
+.learning-block {
+    width: 100vw;
+    padding: 64px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.purple-subhead {
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    color: rgb(0, 113, 227);
+}
+
+.learning-blocks{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 5rem;
+}
+
+.example-wrapper {
+    gap: 96px;
+}
+
+.block-description {
+    line-height: 2rem;
+    text-align: center;
+    padding: 36px;
+}
+
+.blue-gradient {
+    font-family: SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(90deg, rgb(37, 47, 255) -100%, rgb(37, 106, 243) -50%, rgb(124, 192, 226) 0%, rgb(37, 106, 243) 50%, rgb(37, 47, 255) 100%);
+}
+
+.purple-gradient {
+    color: rgb(157, 68, 253);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(90deg, rgb(135, 39, 255) -100%, rgb(157, 68, 253) -50%, rgb(255, 159, 225) 0%, rgb(157, 68, 253) 50%, rgb(135, 39, 255) 100%);;
+}
+
+@media only screen and (max-width: 1250px){
+    .header-section {
+        width: 636px;
+    }
+}
