@@ -53,3 +53,20 @@
   width: 258px;
   height: 560px;
 }
+
+/* @media (max-width: 1024px){
+  .game-simulator{
+    flex-direction: column-reverse;
+    min-height: auto;
+    margin-bottom: 2rem;
+    position: initial;
+    width: 258px;
+    height: 448px;
+  }
+
+  #simulator-svg {
+    z-index: -5;
+    position: absolute;
+
+  }
+} */

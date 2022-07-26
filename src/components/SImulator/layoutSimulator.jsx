@@ -25,11 +25,11 @@ export const LayoutSimulator = ({level}) => {
     return (
         <div className="game-simulator">
             <div id='stack' style={customStyle}>
-                {mode === 1 && declareFunction()}
+                {mode === 1 && <>{declareFunction()}</>}
                 <div className='text' style={divSTyle}>first</div>
-                {mode === 2 && declareFunction()}
+                {mode === 2 && <>{declareFunction()}</>}
                 <div className='text'>second</div>
-                {mode === 3 && declareFunction()}
+                {mode === 3 && <>{declareFunction()}</>}
             </div>
             <CanvasSVG id='simulator-svg'/>
         </div>

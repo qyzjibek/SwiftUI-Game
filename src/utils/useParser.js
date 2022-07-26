@@ -1,4 +1,3 @@
-import { breadcrumbsClasses } from '@mui/material';
 import {useContext} from 'react';
 import { EditorContext, StyleContext } from '../Context';
 import { CSS_COLOR_NAMES } from '../data/colorPallet';
@@ -22,6 +21,27 @@ function isDigit(c) {
 function isAlpha(c) {
     const ch = c.charCodeAt(0);
     return (ch >= 65 && ch < 91) || (ch >= 97 && ch < 123);
+}
+
+function removeSpacesAndNewlines(str){
+    return str.replace(/\s/g, "").replace(/(\r\n|\n|\r)/gm, "").split('()');
+}
+
+function getValidViews(content) {
+    let tokens = removeSpacesAndNewlines(content);
+    let dict = {
+        'Spacer': <div style={{width: "100%"}}></div>,
+        'Divider': <hr className='divider' />,
+    }
+
+    console.log(tokens.map((item) => dict[item]));
+
+    return tokens.map((item) => dict[item]);
+}
+
+export function checkForAnswer(text) {
+    if (!text) return false;
+    return getValidViews(text).length > 0;
 }
 
 function isExp(c) {
@@ -100,7 +120,7 @@ function isFontValid(param) {
 
 export const useParser=()=>{
     const {editorContent} = useContext(EditorContext);
-    const { setCustomStyle, customStyle } = useContext(StyleContext);
+    const { setCustomStyle } = useContext(StyleContext);
 
     function indexesOf(c, content) {
         let arr = [];
@@ -317,25 +337,12 @@ export const useParser=()=>{
             default: return;
         }
     }
-    function removeSpacesAndNewlines(str){
-        return str.replace(/\s/g, "").replace(/(\r\n|\n|\r)/gm, "").split('()');
-    }
 
     function declareFunction () {
         const content = editorContent.trim();
-        let tokens = removeSpacesAndNewlines(content);
-        let dict = {
-            'Spacer': <div style={{width: "100%"}}></div>,
-            'Divider': <hr className='divider' />,
-        }
+        if (!content) return;
 
-        return (
-            <>
-                {
-                    tokens.map((item) => dict[item])
-                }
-            </>
-        )
+        return getValidViews(content);
     }
 
     function checkForToken(str, array, view) {
@@ -376,28 +383,8 @@ export const useParser=()=>{
             const init = parameters[0];
             const view = parameters[1];
             return checkForToken(init, arr, createView(view));
-
         }
-        // let token = "";
-        // let tokens = [];
 
-        // for (let i = 0; i < content.length; i++) {
-        //     const c = content[i];
-        //     if (isAlpha(c)) {
-        //         token += c;
-        //     } else if(isExp(c)) {
-        //         console.log(token);
-        //         tokens.push(token);
-        //         token = "";
-        //     }
-        //     // switch (c) {
-        //     //     case isAlpha(c) === true: console.log("neeeeecdeee"); break;
-        //     //     case isExp(c): console.log(isExp(c)); break;
-        //     //     default: continue;
-        //     // }
-        // }
-
-        // console.log(tokens);
     }
 
     function addStyle(level) {

@@ -54,20 +54,22 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function CustomizedDialogs({isValidAnswer, level}) {
-  const { handleLevelIncr } = useContext(EditorContext);
+  const { handleLevelIncr, editorContent } = useContext(EditorContext);
   const { customStyle, setShowConfetti } = useContext(StyleContext);
 
   const [open, setOpen] = React.useState(false);
   // const { innerWidth: widthWindow, innerHeight: heightWindow } = window;
 
   const handleClickOpen = () => {
-    // setOpen(true);
-      if(isValidAnswer(customStyle)) {
-        setShowConfetti(true);
-        setOpen(true);
-      } else {
-          alert("Oops, wrong answer. Try again!");
-      }
+    console.log(isValidAnswer());
+    const answer = level < 11 ? isValidAnswer(customStyle) : isValidAnswer(editorContent);
+
+    if(answer) {
+      setShowConfetti(true);
+      setOpen(true);
+    } else {
+        alert("Oops, wrong answer. Try again!");
+    }
   };
 
   const handleClose = () => {
