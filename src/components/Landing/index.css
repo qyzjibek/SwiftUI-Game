@@ -24,7 +24,6 @@
 }
 
 .header-section {
-    width: 100%;
     width: 100vw;
     padding:64px;
     text-align: center;
@@ -56,7 +55,7 @@
 
 .example {
     gap: 64px;
-    padding: 0 64px 64px 64px;
+    /* padding: 0 64px 64px 64px; */
 }
 
 .advantage-wrapper {
@@ -119,18 +118,11 @@ footer {
     padding: 36px;
 }
 
-.blue-gradient {
+.pink-gradient {
     font-family: SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(90deg, rgb(37, 47, 255) -100%, rgb(37, 106, 243) -50%, rgb(124, 192, 226) 0%, rgb(37, 106, 243) 50%, rgb(37, 47, 255) 100%);
-}
-
-.purple-gradient {
-    color: rgb(157, 68, 253);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(90deg, rgb(135, 39, 255) -100%, rgb(157, 68, 253) -50%, rgb(255, 159, 225) 0%, rgb(157, 68, 253) 50%, rgb(135, 39, 255) 100%);;
+    background-image: linear-gradient(90deg, rgb(255, 37, 37) -100%, rgb(243, 47, 37) -50%, rgb(234, 187, 85) 0%, rgb(243, 95, 37) 50%, rgb(255, 37, 110) 100%);
 }
 
 .custom-text {
@@ -143,7 +135,7 @@ footer {
     width: 100vw;
     justify-content: flex-start;
     background-color: rgb(29, 29, 31);
-    padding: 64px;
+    padding: 24px;
 }
 
 .flex-start-block {
@@ -162,15 +154,78 @@ footer {
 }
 
 .desc-text {
-    font-size: 24px;
+    font-size: 28px;
     color: rgb(245, 245, 247);
     font-weight: 600;
-    margin: 16px 0;
+    margin-bottom: 16px;
 }
 
+.flex-example {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.margin-left {
+    margin-left: 520px;
+}
+
+.margin-right {
+    margin-right: 520px;
+}
+
+.width-half {
+    width: 600px;
+    border-radius: 22px;
+}
+
+.textarea-example {
+    height: 24px;
+    width: 70%;
+    margin-left: 120px;
+}
 
 @media only screen and (max-width: 1250px){
-    .header-section {
-        width: 636px;
+
+    .flex-example {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
+
+    .margin-left {
+        margin-left: 100px;
+    }
+
+    .margin-right {
+        margin-right: 100px;
+    }
+
+    .width-half {
+        width: 200px;
+        border-radius: 11px;
+    }
+
+    .landing-editor {
+        display: flex;
+        flex-direction: column;
+        /* width: 100%; */
+        margin-top: 0.75rem;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+        border-radius: 16px;
+        background: #fbfbfd;
+        padding: 10px 20px 30px 30px;
+        text-align: start;
+        width: 340px;
+        margin-top: 56px;
+        overflow-x: hidden; /* Hide horizontal scrollbar */
+    }
+
+    .textarea-example {
+        height: 24px;
+        width: 60%;
+        margin-left: 120px;
+    }
+    
 }
