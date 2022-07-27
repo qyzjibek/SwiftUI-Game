@@ -92,9 +92,10 @@ textarea {
 
 @media only screen and (max-width: 1250px){
     .editor-wrapper {
-        position: fixed;
+        position: relative;
         bottom: 16px;
         width: 100vw;
+        max-width: 400px;
         padding: 10px 0 30px 30px;
         border-top: 1px solid #d2d2d7;
         background-color: white;

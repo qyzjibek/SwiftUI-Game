@@ -8,28 +8,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LandingPage } from './components/Landing';
 import Confetti from 'react-confetti';
 import { LinksPage } from './components/LinksPage';
+import { useProgress } from './hooks/useProgress';
 
 function App() {
   const maxLevel = 12, minLevel = 1;
-  const [level, setLevel] = useState(Number(localStorage.getItem('level')) || 1);
   const [customStyle, setCustomStyle] = useState({});
   const [showConfetti, setShowConfetti] = useState(false);
   const [customView, setCustomView] = useState([]);
-  const savedProgress = localStorage.getItem('progress'); 
-  const [progress, setProgress] = useState(savedProgress ? JSON.parse(savedProgress) : []);
+  const {progress, showProgress, setProgress, saveProgress, level, setLevel} = useProgress();
 
   useEffect(() => {
     setCustomStyle(addCustomStyle(level));
   }, [level]);
-
-  useEffect(() => {
-    localStorage.setItem("progress", JSON.stringify(progress));
-  }, [progress]);
-
-  const saveProgress = () => {
-    localStorage.setItem('level', level);
-    alert("Your progress was saved successfully");
-  }
 
   return (
     <BrowserRouter>
@@ -40,7 +30,7 @@ function App() {
       <Route path="/play"
              element={
                     <>
-                      <NavBar saveProgress={saveProgress} progress={progress}/> 
+                      <NavBar saveProgress={saveProgress} progress={progress} showProgress={showProgress}/> 
                       <LevelContext.Provider value={{maxLevel, minLevel, progress, setProgress}}>
                           <StyleContext.Provider value={{customStyle, setCustomStyle, setShowConfetti, customView, setCustomView}}>
                             <LevelMatcher level={level} setLevel={setLevel}/>

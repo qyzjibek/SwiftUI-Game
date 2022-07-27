@@ -45,12 +45,8 @@ export const LevelMatcher = ({level, setLevel}) => {
 
     return (
       <EditorContext.Provider value={{ handleContentChange, editorContent, handleLevelIncr, handleLevelDecr, mode, setMode }}>
-       <StyleContext.Provider value={{customStyle, setCustomStyle}}></StyleContext.Provider>
-          {level < 10 ? <GameSimulator label={data.textLabel} level={level}/> 
-                      : level > 12
-                      ? <CustomSimulator />
-                      : <LayoutSimulator level={level} mode={mode} />
-          }
+       <StyleContext.Provider value={{customStyle, setCustomStyle}}>
+          
           <GameDescription level ={level}/>
           { level < 10 ? <Editor level={level} text={editorContent} label={`Text("${data.textLabel}")`} isValidAnswer={data.isValidAnswer}/>
                       : level === 10 
@@ -59,6 +55,12 @@ export const LevelMatcher = ({level, setLevel}) => {
                       ? <CustomEditor />
                       : <ViewEditor level={level} text={editorContent} isValidAnswer={data.isValidAnswer}/>
           }
+          {level < 10 ? <GameSimulator label={data.textLabel} level={level}/> 
+                      : level > 12
+                      ? <CustomSimulator />
+                      : <LayoutSimulator level={level} mode={mode} />
+          }
+          </StyleContext.Provider>
       </EditorContext.Provider>
     );
   };
