@@ -20,7 +20,6 @@ export const Editor = ({text, label, isValidAnswer, level}) => {
         }
 
         const modifiers = typedText.replace(/\s/g, "").replace(/(\r\n|\n|\r)/gm, "").split('.');
-        console.log(modifiers);
         const last = modifiers[modifiers.length - 1];
         let matches = [];
         

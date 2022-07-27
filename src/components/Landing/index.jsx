@@ -92,7 +92,7 @@ export const LandingPage = ({setlevel}) => {
             <div style={{width: "70%"}}>
                 <h1 className="header-text" style={{color: "rgb(255, 37, 110)"}}>We 😍</h1>
                 <h1 className="header-text" style={{color: "white"}}>VS</h1> 
-                <h1 className="header-text" style={{color: "rgb(255, 37, 37)"}}>Articles, videos and courses</h1> 
+                <h1 className="header-text" style={{color: "rgb(244, 156, 11)"}}>Articles, videos and courses</h1> 
                 <h2 className="subhead-text" style={{color: "white", padding: "20px"}}>We are the next-generation platform for learning code by playing games that combines the missing parts of traditional learning: a tremendous amount of practice and an engaging learning environment.</h2>
             </div>
         </div>

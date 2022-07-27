@@ -14,10 +14,16 @@ function App() {
   const [customStyle, setCustomStyle] = useState({});
   const [showConfetti, setShowConfetti] = useState(false);
   const [customView, setCustomView] = useState([]);
+  const savedProgress = localStorage.getItem('progress'); 
+  const [progress, setProgress] = useState(savedProgress ? JSON.parse(savedProgress) : []);
 
   useEffect(() => {
     setCustomStyle(addCustomStyle(level));
   }, [level]);
+
+  useEffect(() => {
+    localStorage.setItem("progress", JSON.stringify(progress));
+  }, [progress]);
 
   const saveProgress = () => {
     localStorage.setItem('level', level);
@@ -26,13 +32,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      {showConfetti ? <Confetti colors={["#b0b", "#8c28c2", "#e30000", "#38a39c", "#4ca9ff"]} width={2000} height={800}/> : <></>}
+      {showConfetti ? <Confetti colors={["#b0b", "#8c28c2", "#e30000", "#38a39c", "#4ca9ff"]} width={2000} height={800} initialVelocityY={15} numberOfPieces={300}/> : <></>}
     <Routes>
       <Route path="/" element={<LandingPage setLevel={setLevel}/>} />
       <Route path="play" element={
         <>
-         <NavBar saveProgress={saveProgress}/> 
-         <LevelContext.Provider value={{maxLevel, minLevel}}>
+         <NavBar saveProgress={saveProgress} progress={progress}/> 
+         <LevelContext.Provider value={{maxLevel, minLevel, progress, setProgress}}>
             <StyleContext.Provider value={{customStyle, setCustomStyle, setShowConfetti, customView, setCustomView}}>
               <LevelMatcher level={level} setLevel={setLevel}/>
             </StyleContext.Provider>

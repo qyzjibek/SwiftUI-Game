@@ -12,8 +12,7 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import {ReactComponent as BirdLogoSVG} from '../../assets/bird-logo.svg' 
-import Confetti from 'react-confetti';
-import { useState } from "react";
+import { LevelContext } from "../../Context";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -54,6 +53,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function CustomizedDialogs({isValidAnswer, level}) {
+  const {progress, setProgress} = useContext(LevelContext);
   const { handleLevelIncr, editorContent } = useContext(EditorContext);
   const { customStyle, setShowConfetti } = useContext(StyleContext);
 
@@ -61,10 +61,12 @@ export default function CustomizedDialogs({isValidAnswer, level}) {
   // const { innerWidth: widthWindow, innerHeight: heightWindow } = window;
 
   const handleClickOpen = () => {
-    console.log(isValidAnswer());
     const answer = level < 11 ? isValidAnswer(customStyle) : isValidAnswer(editorContent);
 
     if(answer) {
+      // console.log(progress);
+      
+      setProgress((prev) => (prev.includes(level) ? prev : [...prev, level]));
       setShowConfetti(true);
       setOpen(true);
     } else {

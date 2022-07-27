@@ -103,15 +103,8 @@ textarea {
     }
 
     textarea {
-        margin-top: 8px;
         margin-left: 96px;
-        resize: none;
-        background: #f1f7ff;
-        color: rgb(29, 29, 31);
         width: 65%;
-        font-family: 'SF Mono', SFMono-Regular, ui-monospace,
-        'DejaVu Sans Mono', Menlo, Consolas, monospace;
-        font-size: 13px;
         overflow-x: hidden;
     }
 }

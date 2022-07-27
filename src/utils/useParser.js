@@ -353,7 +353,6 @@ export const useParser=()=>{
 
         if (leftParan != -1 && rightParan != -1 && token == "ForEach") {
             if (params.length > 1 && params[0].trim() === "fruits" && params[1].trim() === "id: \\.self") {
-                console.log('here');
                 return view;
             }
         }

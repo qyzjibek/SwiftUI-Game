@@ -4,8 +4,7 @@ import { Container } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
-export const NavBar = ({saveProgress}) => {
-
+export const NavBar = ({saveProgress, progress}) => {
   return (
     <Navbar bg="light" expand="lg" className="navbar navbar-dark bg-dark" sticky="top"  >
         <Container fluid >
@@ -17,6 +16,7 @@ export const NavBar = ({saveProgress}) => {
               <Nav.Link href="#link">Helpful Links</Nav.Link>
             </Nav>
           </Navbar.Collapse>
+          {progress.length > 0 && <Navbar.Brand  mb-0 h1 >{progress.length}/12</Navbar.Brand>}
         </Container>
       </Navbar>
   );

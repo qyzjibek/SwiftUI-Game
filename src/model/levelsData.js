@@ -36,7 +36,7 @@ const isValidColor = (style) => {
   if (!style) return;
 
   if (style.hasOwnProperty('color')) {
-      return (!style.color) ? true : false;
+      return (style.color) ? true : false;
     }
   
   return false
