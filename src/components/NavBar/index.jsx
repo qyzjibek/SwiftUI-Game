@@ -13,10 +13,10 @@ export const NavBar = ({saveProgress, progress}) => {
           <Navbar.Collapse id="basic-navbar-nav" >
             <Nav className="me-auto">
               <Nav.Link onClick={saveProgress}>Save progress</Nav.Link>
-              <Nav.Link href="#link">Helpful Links</Nav.Link>
+              <Nav.Link as={Link} to="/resources">Helpful Resources</Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          {progress.length > 0 && <Navbar.Brand  mb-0 h1 >{progress.length}/12</Navbar.Brand>}
+          {localStorage.getItem('level') && <Navbar.Brand  mb-0 h1 >{progress.length}/12</Navbar.Brand>}
         </Container>
       </Navbar>
   );

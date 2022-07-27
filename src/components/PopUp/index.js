@@ -1,6 +1,6 @@
 import "./index.css"
 import { useContext } from "react";
-import { EditorContext, StyleContext } from "../../Context";
+import { EditorContext, StyleContext, LevelContext } from "../../Context";
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -12,7 +12,7 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import {ReactComponent as BirdLogoSVG} from '../../assets/bird-logo.svg' 
-import { LevelContext } from "../../Context";
+import { Link } from "react-router-dom";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -53,6 +53,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function CustomizedDialogs({isValidAnswer, level}) {
+  const {maxLevel} = useContext(LevelContext);
   const {progress, setProgress} = useContext(LevelContext);
   const { handleLevelIncr, editorContent } = useContext(EditorContext);
   const { customStyle, setShowConfetti } = useContext(StyleContext);
@@ -92,21 +93,27 @@ export default function CustomizedDialogs({isValidAnswer, level}) {
         style={{borderRadius: '27px'}}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} style={{width: "100%", fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif"}}>
-
         </BootstrapDialogTitle>
         <DialogContent className="dialog-content" style={{padding: "22px"}}>
           <BirdLogoSVG style={{position: "initial", height: "4rem"}} />
           <h3 className="score" style={{lineHeight: "1.75rem", fontSize: "inherit", margin: "10px 0", color: "black"}}>
             Level {level} completed!
           </h3>
-          <div className="score">
-          + 10
-          </div>
         </DialogContent>
         <DialogActions>
-        <button onClick={handleClose} className='check-btn' style={{marginLeft: '160px'}}>
-            Next Level
-        </button>
+        {level === maxLevel ? <Link to="/resources">
+                              <button onClick={() => {
+                                setOpen(false);
+                                setTimeout(() => {
+                                  setShowConfetti(false);
+                                }, 2000);
+                              }} className='check-btn' style={{marginLeft: '160px'}}>
+                                  Finish
+                              </button></Link> 
+                            : <button onClick={handleClose} className='check-btn' style={{marginLeft: '160px'}}>
+                                  Next Level
+                              </button>
+        }
         </DialogActions>
       </BootstrapDialog>
     </div>

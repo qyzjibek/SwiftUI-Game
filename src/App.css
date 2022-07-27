@@ -16,3 +16,112 @@ body {
 .link {
   text-decoration: none;
 }
+
+.link-text {
+  color: rgb(10, 132, 255);
+}
+
+.link-text:hover {
+  text-decoration: underline;
+}
+
+.bottom-pre {
+  bottom: 17px;
+  left: 16px;
+  position: absolute;
+}
+
+.cards-stack {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-column-gap: 15px;
+  padding: 36px;
+}
+
+.details-desc {
+  font-size: 16px;
+}
+
+.card {
+  overflow: hidden;
+  box-shadow: rgba(201, 201, 201, 0.3) 0px 5px 15px 0px;
+  display: block;
+  transition: all 0.3s ease-out;
+  border-radius: 18px;
+  height: 490px;
+}
+
+.card:hover {
+  transform: scale(1.01);
+  border: 1px solid rgb(10, 132, 255);
+}
+
+.section-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 980px;
+}
+
+.details {
+  text-align: start;
+  padding: 16px;
+  height: 139px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.details-title {
+  font-size: 1rem;
+  line-height: 1.23536;
+  font-weight: 600;
+  letter-spacing: -.024em;
+}
+
+.links-page {
+  background-color: rgb(245, 245, 247);
+}
+
+.card-cover {
+  width: 100%;
+  height: 235px;
+}
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  margin: 36px 0 0 200px;
+}
+
+@media only screen and (max-width: 1250px){
+  .section-container {
+      width: 692px;
+  }
+
+  .card {
+    height: 341px;
+  }
+
+  .details-title {
+    font-size: .82353rem;
+    line-height: 1.28577;
+    font-weight: 600;
+    letter-spacing: -.016em;
+  }
+
+  .card-cover {
+    height: 163px;
+  }
+
+  .details {
+    height: 144px;
+  }
+
+  .details-desc {
+    font-size: 10px;
+  }
+
+  .cards-stack {
+    grid-template-columns: unset;
+  }
+}

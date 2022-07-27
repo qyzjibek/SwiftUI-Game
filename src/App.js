@@ -7,6 +7,7 @@ import { LevelMatcher } from './components/LevelMatcher';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LandingPage } from './components/Landing';
 import Confetti from 'react-confetti';
+import { LinksPage } from './components/LinksPage';
 
 function App() {
   const maxLevel = 12, minLevel = 1;
@@ -34,17 +35,25 @@ function App() {
     <BrowserRouter>
       {showConfetti ? <Confetti colors={["#b0b", "#8c28c2", "#e30000", "#38a39c", "#4ca9ff"]} width={2000} height={800} initialVelocityY={15} numberOfPieces={300}/> : <></>}
     <Routes>
-      <Route path="/" element={<LandingPage setLevel={setLevel}/>} />
-      <Route path="play" element={
-        <>
-         <NavBar saveProgress={saveProgress} progress={progress}/> 
-         <LevelContext.Provider value={{maxLevel, minLevel, progress, setProgress}}>
-            <StyleContext.Provider value={{customStyle, setCustomStyle, setShowConfetti, customView, setCustomView}}>
-              <LevelMatcher level={level} setLevel={setLevel}/>
-            </StyleContext.Provider>
-          </LevelContext.Provider>
-        </>
-      } />
+      <Route path="/" 
+             element={<LandingPage setLevel={setLevel}/>} />
+      <Route path="/play"
+             element={
+                    <>
+                      <NavBar saveProgress={saveProgress} progress={progress}/> 
+                      <LevelContext.Provider value={{maxLevel, minLevel, progress, setProgress}}>
+                          <StyleContext.Provider value={{customStyle, setCustomStyle, setShowConfetti, customView, setCustomView}}>
+                            <LevelMatcher level={level} setLevel={setLevel}/>
+                          </StyleContext.Provider>
+                        </LevelContext.Provider>
+                    </>
+                    } 
+      />
+       <Route path="/resources"
+             element={
+                    <LinksPage/>
+                    } 
+      />
     </Routes>
     </BrowserRouter>
   );
