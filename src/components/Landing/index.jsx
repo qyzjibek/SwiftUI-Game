@@ -28,8 +28,7 @@ return (
     <>
     <div className="header-section flex-column">
         <h1 className="header-text">Learn Code By Practicing <span className="pink-gradient">SwiftUI</span></h1>
-        <h2 className="subhead-text" style={{width: "50%"}}>No more boring courses, videos and articles.
-Learn to code in a revolutionary new, fun, and effective way.</h2>
+        <h2 className="subhead-text" style={{width: "50%"}}>Learn to write apps by applying your knowledge.</h2>
         <Link to='/play' onClick={onStartHandler}>
             <button className="play-btn">Get started</button>
         </Link>
@@ -90,30 +89,45 @@ Learn to code in a revolutionary new, fun, and effective way.</h2>
         <h1 className="header-text">Our coding  <span className="pink-gradient ">Blocks</span></h1>
         <h2 className="subhead-text">We cover applying Text Modifiers, arranging views in Stack, and several types of Views</h2>
         <div className="learning-blocks flex-example example-wrapper">
-            <div className="flex-column">                
+            <div className="flex-column" style={{flex: "50%"}}>                
                 <img className='landing-simulator-svg' src={ModifiersExampleIcon} alt="modifier similator example"/>
-                <p style={{fontSize: "1.5rem", fontWeight: "600", marginTop: "32px"}}>Modifier Block</p>
-                <h2 className="subhead-text block-description">We are the next-generation platform for learning code by playing games that combines the missing parts of traditional learning: a tremendous amount of practice and an engaging learning environment.</h2>
+                <p style={{fontSize: "1.75rem", fontWeight: "600", marginTop: "32px"}}>Modifier Block</p>
+                <h2 className="subhead-text block-description"><span style={{color: "rgb(0, 113, 227)", fontWeight: "600"}}>9 Levels </span>on Text Modifiers.
+                    <p>Explore the ways of changing views based on the example of Text View and engage in learning SwiftUI with the basics.</p>
+                </h2>
             </div>
-            <div className="flex-column">                
+            <div className="flex-column" style={{flex: "50%"}}>                
                 <img className='landing-simulator-svg' src={StacksExampleIcon} alt="stack similator example"/>
-                <p style={{fontSize: "1.5rem", fontWeight: "600", marginTop: "32px"}}>Stack Block</p>
-                <h2 className="subhead-text block-description">We are the next-generation platform for learning code by playing games that combines the missing parts of traditional learning: a tremendous amount of practice and an engaging learning environment.</h2>
+                <p style={{fontSize: "1.75rem", fontWeight: "600", marginTop: "32px"}}>Stack Block</p>
+                <h2 className="subhead-text block-description"><span style={{color: "rgb(0, 113, 227)", fontWeight: "600"}}>3 Levels </span>on Stacks and Custom Views.
+                    <p>Learn to combine several views: arrage them in 3 types of stack and add Spacer & Divider to to draw custom view</p>
+                </h2>
             </div>
         </div>
     </div>
-    <div className="advantage-wrapper flex-column">
+    {/* <div className="advantage-wrapper flex-column">
         <div style={{width: "70%"}}>
             <h1 className="header-text" style={{color: "rgb(255, 37, 110)"}}>We 😍</h1>
             <h1 className="header-text" style={{color: "white"}}>VS</h1> 
             <h1 className="header-text" style={{color: "rgb(244, 156, 11)"}}>Articles, videos and courses</h1> 
-            <h2 className="subhead-text" style={{color: "white", padding: "20px"}}>We are the next-generation platform for learning code by playing games that combines the missing parts of traditional learning: a tremendous amount of practice and an engaging learning environment.</h2>
+            <h2 className="subhead-text" style={{color: "white", padding: "20px"}}></h2>
         </div>
-    </div>
-    <footer>
-        <div className="mb-4">
-            <p style={{color: "rgb(156,163,175)"}}>Found a bug or want to say hi?</p>
+    </div> */}
+    <footer className="flex-column pad-2">
+        <div className="footer-text">
+            <p style={{color: "rgb(156,163,175)", marginBottom: "0"}}>Found a bug or want to say hi?</p>
             <a href="mailto:zhibekrahym05@gmail.com" style={{color: "rgb(156, 163, 175)"}}>Email me </a>
+        </div>
+        <div className="flex-row" style={{fontSize: "15px"}}>
+            <p className="text-gray-600">
+                <a href="https://github.com/qyzjibek/SwiftUI-Game">Github</a>
+            </p>
+            <p className="text-gray-600">
+                <a href="https://www.linkedin.com/in/qyzjibek/">LinkedIn</a>
+            </p>
+            <p className="text-gray-600">
+                <a href="https://www.instagram.com/nfactorial.school/">n! Incubator</a>
+            </p>
         </div>
     </footer>
     </>

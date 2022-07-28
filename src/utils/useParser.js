@@ -2,12 +2,8 @@ import {useContext} from 'react';
 import { EditorContext, StyleContext } from '../Context';
 import { CSS_COLOR_NAMES } from '../data/colorPallet';
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 function isColorValid(color) {
-    return CSS_COLOR_NAMES.includes(capitalizeFirstLetter(color)) ? color : "";
+    return CSS_COLOR_NAMES[color] || "";
 }
 
 function isTextCaseValid(param) {

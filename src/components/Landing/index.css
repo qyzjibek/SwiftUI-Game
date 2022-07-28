@@ -65,8 +65,8 @@
     text-align: center;
 }
 
-.mb-4 {
-    margin-bottom: 1rem;
+.footer-text{
+    margin-bottom: 0;
     display: flex;
     gap: 8px;
     width: 100vw;
@@ -103,9 +103,16 @@ footer {
 }
 
 .learning-blocks{
-    padding-left: 1rem;
-    padding-right: 1rem;
+    /* padding-left: 1rem;
+    padding-right: 1rem; */
+    margin-left: 5rem;
+    margin-right: 5rem;
     margin-top: 5rem;
+}
+.text-gray-600 a {
+    text-decoration: none;
+    color: inherit;
+    margin: 0 0.5rem 0 0.5rem;
 }
 
 .example-wrapper {
@@ -114,8 +121,10 @@ footer {
 
 .block-description {
     line-height: 2rem;
+    height: 200px;
     text-align: center;
     padding: 36px;
+    font-size: 20px;
 }
 
 .pink-gradient {
@@ -183,6 +192,14 @@ footer {
     height: 24px;
     width: 70%;
     margin-left: 120px;
+}
+
+.text-gray-600 {
+    color: rgb(75,85,99);
+}
+
+.pad-2 {
+    padding: 2rem;
 }
 
 @media only screen and (max-width: 1250px){

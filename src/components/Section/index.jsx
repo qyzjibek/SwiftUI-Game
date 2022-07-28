@@ -15,7 +15,7 @@ export const Section = ({description, cards, title}) => {
                         <div className="details-title">{card.title}</div>
                         <div className="details-desc">{card.description}</div>
                         <div className="flex-row bottom-pre">
-                            <div className="link-text">Go to the link</div>
+                            <div className="link-text">Follow the link</div>
                             <ArrowRightBlueSVG/>
                         </div>
                     </div>
