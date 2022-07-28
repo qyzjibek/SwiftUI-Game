@@ -6,18 +6,19 @@ import StacksExampleIcon from '../../assets/stack-example-icon.png';
 import DescriptionInstruction from '../../assets/description-ins.png';
 import EditorInstruction from '../../assets/editor-ins.png';
 import InstructionsVideo from '../../assets/instructions.mp4';
-import { useState, useContext } from "react";
+import { useContext, useEffect } from "react";
 import { StyleContext } from "../../Context";
+import { useEditorContent } from "../../hooks/useEditorContent";
+import { useParser } from "../../utils/useParser";
 
-export const LandingPage = ({setlevel}) => {
-  const [editorContent, setEditorContent] = useState("");
-  
-  const {customStyle, setCustomStyle } = useContext(StyleContext);
+export const LandingPage = () => {
+  const {editorContent, handleContentChange} = useEditorContent();
+  const {addStyleToText} = useParser();
+  const {customStyle, setCustomStyle} = useContext(StyleContext);
 
-  const handleContentChange = (value) => {
-    setEditorContent(value);
-    console.log(value);
-  }
+  useEffect(() => {
+    if (editorContent == "") setCustomStyle({}); else addStyleToText(editorContent);
+  }, [editorContent]);
 
   const onStartHandler = () => {
     localStorage.setItem('level', 1);

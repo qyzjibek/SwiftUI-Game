@@ -8,27 +8,20 @@ import { ViewEditor } from '../Editor/viewEditor';
 import { LayoutSimulator } from '../SImulator/layoutSimulator';
 import { CustomSimulator } from '../SImulator/index2';
 import { CustomEditor } from '../Editor/customEditor';
+import {useEditorContent} from '../../hooks/useEditorContent';
 
 import { levelsData } from '../../model/levelsData';
 
 export const LevelMatcher = ({level, setLevel}) => {
   const data = levelsData[level-1];
-
   const [mode, setMode] = useState(1);
-
-  const [editorContent, setEditorContent] = useState("");
-  
+  const {editorContent, setEditorContent, handleContentChange} = useEditorContent();
   const {customStyle, setCustomStyle } = useContext(StyleContext);
-
   const {minLevel, maxLevel} = useContext(LevelContext);
 
   useEffect(() => {
     setEditorContent("");
   }, [mode]);
-
-  const handleContentChange = (value) => {
-    setEditorContent(value);
-  }
 
   const handleLevelIncr = () => {
     setLevel((prev) => (prev < maxLevel ? prev+1 : prev));
@@ -42,11 +35,9 @@ export const LevelMatcher = ({level, setLevel}) => {
     setEditorContent("");
   }
 
-
     return (
       <EditorContext.Provider value={{ handleContentChange, editorContent, handleLevelIncr, handleLevelDecr, mode, setMode }}>
        <StyleContext.Provider value={{customStyle, setCustomStyle}}>
-          
           <GameDescription level ={level}/>
           { level < 10 ? <Editor level={level} text={editorContent} label={`Text("${data.textLabel}")`} isValidAnswer={data.isValidAnswer}/>
                       : level === 10 

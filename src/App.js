@@ -26,7 +26,12 @@ function App() {
       {showConfetti ? <Confetti colors={["#b0b", "#8c28c2", "#e30000", "#38a39c", "#4ca9ff"]} width={2000} height={800} initialVelocityY={15} numberOfPieces={300}/> : <></>}
     <Routes>
       <Route path="/" 
-             element={<LandingPage setLevel={setLevel}/>} />
+             element={
+              <StyleContext.Provider value={{customStyle, setCustomStyle}}>
+                <LandingPage/>
+              </StyleContext.Provider>
+             }
+      />
       <Route path="/play"
              element={
                     <>

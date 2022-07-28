@@ -24,17 +24,15 @@ function isAlpha(c) {
 }
 
 function removeSpacesAndNewlines(str){
-    return str.replace(/\s/g, "").replace(/(\r\n|\n|\r)/gm, "").split('()');
+    return str.replace(/\s/g, "").replace(/(\r\n|\n|\r)/gm, "");
 }
 
 function getValidViews(content) {
-    let tokens = removeSpacesAndNewlines(content);
+    let tokens = removeSpacesAndNewlines(content).split('()');
     let dict = {
         'Spacer': <div style={{width: "100%"}}></div>,
         'Divider': <hr className='divider' />,
     }
-
-    console.log(tokens.map((item) => dict[item]));
 
     return tokens.map((item) => dict[item]);
 }
@@ -209,7 +207,7 @@ export const useParser=()=>{
             const begin =  functionCall.indexOf('(');
             const end = functionCall.indexOf(')');
 
-            if (begin + 1 === end) {
+            if (!removeSpacesAndNewlines(functionCall.slice(begin+1, end)) && begin !== -1 && end !== -1) {
                 const token = functionCall.slice(0, begin).trim();
                 if (token == "italic") {
                     setCustomStyle((prev) => ({
@@ -391,6 +389,6 @@ export const useParser=()=>{
         return level < 10 ? addStyleToText(content) : addStyleToView(content);
     }
 
-    return {addStyle, declareFunction, codeGenerator}
+    return {addStyle, declareFunction, codeGenerator, addStyleToText}
     
 }
