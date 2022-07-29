@@ -33,6 +33,8 @@ return (
             <button className="play-btn">Get started</button>
         </Link>
         <div className="example flex-example">
+            <div className="flex-column">
+            <p style={{fontSize: "60px"}}>👇🏻</p>
             <div className="landing-editor">
             <pre >
 {`
@@ -58,7 +60,8 @@ return (
 }
 `}
             </pre>
-        </div>
+            </div>
+            </div>
         <div style={{position: "relative", display: "flex"}}>
             <CanvasSVG className='landing-simulator-svg'/>
             <div id='text' className='text custom-text' style={customStyle}>Enjoy your journey</div>

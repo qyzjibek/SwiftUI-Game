@@ -79,6 +79,7 @@ body {
 }
 
 .links-page {
+  width: 100vw;
   background-color: rgb(245, 245, 247);
 }
 

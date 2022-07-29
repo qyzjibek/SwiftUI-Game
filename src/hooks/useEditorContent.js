@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export function useEditorContent () {
-    const [editorContent, setEditorContent] = useState("");
+    const [editorContent, setEditorContent] = useState(".background(.yellow)");
 
     const handleContentChange = (value) => {
         setEditorContent(value);

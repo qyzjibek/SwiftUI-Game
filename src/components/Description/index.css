@@ -71,7 +71,7 @@ pre {
 }
 
 @media (max-width: 1024px){
-    .description {
+    /* .description {
         height: unset;
-    }    
-  }
+    }     */
+}
